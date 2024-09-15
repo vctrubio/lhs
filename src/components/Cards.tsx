@@ -7,6 +7,12 @@ interface CardHouseProps {
     house: House;
 }
 
+interface DescBoxProps {
+    text: string;
+    svg: string;
+}
+
+
 function formatCurrency(value: number, rent: boolean = false): any {
     const formattedValue = value.toLocaleString('de-DE');
     return (
@@ -20,6 +26,14 @@ function getRentOrBuyText(buyOrRent: boolean): string {
     return buyOrRent ? 'buy' : 'rent';
 }
 
+const DescBox: React.FC<DescBoxProps> = ({ text, svg }) => {
+    return (
+        <div>
+            <span>{text}</span> -
+            <span>{svg}</span>
+        </div>
+    );
+};
 
 export const CardHouse: React.FC<CardHouseProps> = ({ house }) => {
     console.log("🚀 ~ house:", house)
@@ -41,12 +55,13 @@ export const CardHouse: React.FC<CardHouseProps> = ({ house }) => {
                         loading="lazy"
                         quality={100}
                     />
-                    <div id='rent-or-buy'>{getRentOrBuyText(house.buyOrRent)}</div>                </div>
+                    <div id='rent-or-buy'>{getRentOrBuyText(house.buyOrRent)}</div>
+                </div>
                 <div className="desc">
                     <div>
-                        <div>m2</div>
-                        <div>rooms</div>
-                        <div>hood</div>
+                        <DescBox text={String(house.totalArea)} svg='M2'></DescBox>
+                        <DescBox text={String(house.rooms.Bedroom)} svg='📦'></DescBox>
+                        <DescBox text={String(house.barrioRef.name)} svg='📍'></DescBox>
                     </div>
                     <div>
                         <div>{formatCurrency(house.precio, house.buyOrRent)}</div>

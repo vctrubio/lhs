@@ -23,7 +23,7 @@ const NavBar = ({ flag }) => {
             <div className="navbar">
                 {items.map((item) => (
                     <div key={item}>
-                        <Link href={`/${item}`}>
+                        <Link href={`/${item}`} className="w-full h-full">
                             {item}
                         </Link>
                     </div>

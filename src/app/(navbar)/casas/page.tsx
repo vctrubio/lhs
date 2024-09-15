@@ -27,12 +27,23 @@ const Objective = () => {
 }
 
 
+const SearchBar = () => {
+    return (
+        <div className='search-bar'>
+            <input type="text" placeholder="search" />
+            <div>Sort ASC | DES</div>
+            <div>Filter</div>
+        </div>
+    )
+}
+
 const HomePage = async () => {
     const entries: House[] = await fetchHouseEntries();
     console.log("🚀 ~ HomePage ~ entries:", entries)
 
     return (
         <>
+            <SearchBar />
             <div className='card-homes-container'>
                 {entries.map((entry: House) => (
                     <CardHouse house={entry} key={entry.url} />

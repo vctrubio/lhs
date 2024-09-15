@@ -31,3 +31,32 @@ export async function fetchHouseEntries(): Promise<House[]> {
         } as House;
     });
 }
+
+export async function fetchHouseByID(url: string): Promise<House | null> {
+    console.log(`Fetching house with URL: ${url}`);
+
+    try {
+        const entries = await client.getEntries();
+
+        // Filter the entries to find the one that matches the given URL
+        const filteredEntry = entries.items.find((entry: Entry<any>) => {
+            return entry.sys.contentType.sys.id === 'house' && entry.fields.url === url;
+        });
+
+        if (!filteredEntry) {
+            console.log(`No house found for URL: ${url}`);
+            return null; // Return null if no house matches the given URL
+        }
+
+        // Extract barrioRef.fields if it's available
+        const { barrioRef, ...fields } = filteredEntry.fields;
+
+        return {
+            ...fields,
+            barrioRef: barrioRef ? (barrioRef as BarrioRef).fields : null,
+        } as House;
+    } catch (error) {
+        console.error('Error fetching house by ID:', error);
+        return null;
+    }
+}
