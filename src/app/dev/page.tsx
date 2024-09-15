@@ -1,5 +1,8 @@
+'use client'
+import React, { useState, useRef, useEffect } from 'react';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFilter, faSort } from '@fortawesome/free-solid-svg-icons';
+import { faFilter, faSort, faSearch } from '@fortawesome/free-solid-svg-icons';
 
 interface ItermProps {
     title: string;
@@ -17,8 +20,12 @@ const Iterm = () => {
             <div className="container-twoes">
                 <div className="tv">
                     <div>
-                        <div className="sandog">$</div>
-                        <div className="caplog"></div>
+                        <div className="sandog">
+                            <FontAwesomeIcon icon={faSearch} />
+                        </div>
+                        <div className="caplog">
+                            <input type="text" placeholder="" />
+                        </div>
                     </div>
                     <div id="search-result">
                         rest of text

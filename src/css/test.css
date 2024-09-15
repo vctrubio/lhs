@@ -3,6 +3,7 @@
     /* Define a custom 18 */
     --bg-title: #ece3e3;
     --bg-content: #9c9898;
+    --color-search-bar: #9c9898;
     --size-min: 500;
     font-size: var(--size);
 
@@ -56,21 +57,20 @@
         }
 
         >*:first-child {
-            color: red;
+            /* search-icon-bar */
+            color: var(--color-search-bar);
             display: flex;
             font-size: calc(var(--size) * 1.8);
 
             border: 1px solid black;
             background-color: var(--display-bg);
             border-radius: calc(var(--size) * 0.8);
-            /* Background color for content area */
 
+            /* Background color for content area */
             >*:first-child {
                 /* border: 1px solid black; */
-                margin-right: 4px;
+                margin-right: 12px;
                 min-width: 24px;
-                text-align: center;
-
             }
         }
 
@@ -115,9 +115,21 @@
         padding: 0 4px;
         overflow: hidden;
         border-radius: calc(var(--size) * 0.6);
+        /* display: flex; */
+
+        input {
+            background-color: transparent;
+            width: inherit;
+            width: 24px;
+            padding-left: 6px;
+            &:focus {
+                outline: red;
+            }
+        }
     }
 
 }
+
 
 .six-ways {
     --height: 200px;
