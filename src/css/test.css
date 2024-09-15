@@ -31,7 +31,8 @@
         >*:first-child {
             background-color: rgb(88, 88, 83);
             opacity: 0.8;
-            min-width: var(--size-min); /* !!!! */
+            min-width: var(--size-min);
+            /* !!!! */
         }
 
 
@@ -118,11 +119,102 @@
 
 }
 
+.six-ways {
+    --height: 200px;
+    --hover-color: #c08787;
+    gap: 10px;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    /* 12 equal columns */
+    grid-template-rows: auto auto;
+    /* Two rows */
+    /* Adjust the gap between grid items as needed */
+    border: 1px solid black;
+    font-size: 1.6rem;
+
+    >* {
+        /* border: 1px solid black; */
+        padding: 1rem;
+
+        &:hover {
+            background-color: var(--hover-color);
+            transition-duration: 1s;
+        }
+    }
+
+}
+
+#search-ds {
+    height: 100%;
+    width: 100%;
+    padding: 0 1rem;
+    text-align: center;
+
+    border-radius: 4px;
+
+    background-color: black;
+    opacity: 0.5;
+}
+
+#search-ds:focus {
+    outline: none;
+    color: rgb(255, 255, 255);
+    opacity: 1;
+}
+
+#search-ds:hover {
+    background-color: var(--hover-color) !important;
+}
+
+
+.six-ways>*:nth-child(1) {
+    grid-column: span 3;
+    /* First item in the first row spans 3 columns */
+    text-align: center;
+}
+
+.six-ways>*:nth-child(2) {
+    grid-column: span 6;
+    /* Second item in the first row spans 6 columns */
+    text-align: center;
+}
+
+.six-ways>*:nth-child(3) {
+    grid-column: span 3;
+    /* Third* in the first row spans 3 columns */
+    text-align: center;
+}
+
+.six-ways>*:nth-child(4) {
+    grid-column: span 2;
+    /* First* in the second row spans 2 columns */
+    display: flex;
+    justify-self: end;
+    text-align: right;
+    /* Aligns the* to the right of its grid cell */
+}
+
+.six-ways>*:nth-child(5) {
+    grid-column: span 8;
+    /* Second* in the second row spans 8 columns */
+    text-align: center;
+
+    &:hover {
+        background-color: transparent !important;
+    }
+}
+
+.six-ways>.item:nth-child(6) {
+    grid-column: span 2;
+    display: flex;
+    justify-self: flex-start;
+    /* Third item in the second row spans 2 columns */
+}
 
 @media (max-width: 768px) {
     .container-twoes {
         flex-wrap: wrap;
-    }     
+    }
 
     .tv-controller {
         text-align: center;

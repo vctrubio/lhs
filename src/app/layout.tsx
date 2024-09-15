@@ -16,6 +16,11 @@ import "@/css/test.css";
 //   weight: "100 900",
 // });
 
+import '@fortawesome/fontawesome-svg-core/styles.css'; // Import the CSS
+import { config } from '@fortawesome/fontawesome-svg-core';
+config.autoAddCss = false; // Tell Font Awesome to skip adding the CSS automatically
+
+
 export const metadata: Metadata = {
   title: "LHS Concept",
   description: "Exculsive Madrid Living" //lifestyle, luxury, location

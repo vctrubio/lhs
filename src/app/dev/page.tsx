@@ -1,3 +1,5 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFilter, faSort } from '@fortawesome/free-solid-svg-icons';
 
 interface ItermProps {
     title: string;
@@ -15,8 +17,8 @@ const Iterm = () => {
             <div className="container-twoes">
                 <div className="tv">
                     <div>
-                       <div className="sandog">$</div>
-                       <div className="caplog"></div>
+                        <div className="sandog">$</div>
+                        <div className="caplog"></div>
                     </div>
                     <div id="search-result">
                         rest of text
@@ -33,11 +35,34 @@ const Iterm = () => {
         </div>
     );
 }
+
+const SixWayStreet = () => {
+    return (
+        <div className="six-ways">
+            <div>Events</div>
+            <div>Properties</div>
+            <div>Lifestyle</div>
+            <div>
+                Filter
+                {/* <FontAwesomeIcon icon={faFilter}/> */}
+            </div>
+            <div><input id="search-ds" placeholder="Search bar"></input></div>
+            <div>
+                OrderBY
+                {/* <FontAwesomeIcon icon={faSort}/> */}
+            </div>
+        </div>
+    )
+}
+
+
 const Testing = () => {
-    return (<>
-        get sexy with me
+    return (<div className="flex flex-col gap-20 px-20">
+        <div></div>get sexy with me
         <Iterm />
-    </>);
+        <SixWayStreet />
+
+    </div>);
 }
 
 export default Testing;
