@@ -48,7 +48,7 @@ export default function MainPage() {
         <LandingPage />
       </div>
       <div>
-        <NavBar />
+        <NavBar flag={false}/>
         <Banner />
       </div>
     </div>

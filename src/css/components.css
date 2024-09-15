@@ -11,14 +11,14 @@
     text-align: center;
 }
 
-.banner-title{
+.banner-title {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     text-align: center;
     padding: 1em;
     margin: 0 2em;
-    
+
     color: black;
     border: var(--tmp-border);
 }
@@ -52,7 +52,7 @@
 }
 
 
-.top-logo{
+.top-logo {
     position: absolute;
     top: 0;
     left: 0;
@@ -67,7 +67,80 @@
     opacity: 0.4;
     cursor: pointer;
 
-    :hover{
+    :hover {
         opacity: 1;
     }
+}
+
+
+
+.card {
+    --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1);
+    --box-shadow-hover: 0 4px 8px rgba(0, 0, 0, 0.3), 0 6px 20px rgba(0, 0, 0, 0.3);
+    --border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    width: 400px;
+    height: 480px;
+    margin: 1em;
+    overflow: hidden;
+
+    .cover {
+        position: relative;
+        height: 400px;
+    }
+
+    .desc {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        flex-grow: 1;
+        
+        >* {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+            padding: 0.2em 0.1em;
+            /* >*{
+                display: flex;
+                justify-content: start;
+            } */
+            border: var(--tmp-border);
+        }
+    }
+
+    #rent-or-buy {
+        display: flex;
+        justify-content: center;
+        border: 1px solid #000;
+        border-radius: var(--border-radius);
+        padding: 0.5em;
+        margin: .2em;
+        width: 80px;
+        opacity: 0.4;
+
+        cursor: pointer;
+        /* &:hover {
+            opacity: 1;
+        } */
+    }
+
+    &:hover{
+        box-shadow: var(--box-shadow-hover);
+    }
+}
+
+.card-homes-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 50px;
+    border: var(--tmp-border);
+    width: 100%;
+    height: 100%;
+
 }

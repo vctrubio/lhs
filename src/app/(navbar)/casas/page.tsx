@@ -1,7 +1,11 @@
+import React from 'react';
+import { fetchHouseEntries } from '@/lib/bridges'
+import { House } from '@/types/house';
+import { CardHouse } from '@/components/Cards';
 
-const HomePage = () => {
+const Objective = () => {
     return (
-        <>
+        <div>
             <div>
                 <ul>Get flats from CRM</ul>
                 <li>Search box, filter box</li>
@@ -18,6 +22,23 @@ const HomePage = () => {
                 <li>DESC Y TITULO</li>
                 <li>precio</li>
             </div>
+        </div>
+    )
+}
+
+
+const HomePage = async () => {
+    const entries: House[] = await fetchHouseEntries();
+    console.log("🚀 ~ HomePage ~ entries:", entries)
+
+    return (
+        <>
+            <div className='card-homes-container'>
+                {entries.map((entry: House) => (
+                    <CardHouse house={entry} key={entry.url} />
+                ))}
+            </div>
+            {/* <Objective/>    */}
         </>
     )
 }
