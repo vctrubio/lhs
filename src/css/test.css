@@ -131,52 +131,6 @@
 }
 
 
-.six-ways {
-    --height: 200px;
-    --hover-color: #c08787;
-    gap: 10px;
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    /* 12 equal columns */
-    grid-template-rows: auto auto;
-    /* Two rows */
-    /* Adjust the gap between grid items as needed */
-    border: 1px solid black;
-    font-size: 1.6rem;
-
-    >* {
-        /* border: 1px solid black; */
-        padding: 1rem;
-
-        &:hover {
-            background-color: var(--hover-color);
-            transition-duration: 1s;
-        }
-    }
-
-}
-
-#search-ds {
-    height: 100%;
-    width: 100%;
-    padding: 0 1rem;
-    text-align: center;
-
-    border-radius: 4px;
-
-    background-color: black;
-    opacity: 0.5;
-}
-
-#search-ds:focus {
-    outline: none;
-    color: rgb(255, 255, 255);
-    opacity: 1;
-}
-
-#search-ds:hover {
-    background-color: var(--hover-color) !important;
-}
 
 
 .six-ways>*:nth-child(1) {

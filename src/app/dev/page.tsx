@@ -69,7 +69,7 @@ const SixWayStreet = () => {
 
 const LHS = () => {
     return (
-        <div className='text-9xl bg-black p-10 text-center h-auto flex items-center justify-center flex-col gap-8' style={{letterSpacing: '12px', backgroundColor: 'var(--color-beight-light-bg)'}}>
+        <div className='text-9xl bg-black p-10 text-center h-auto flex items-center justify-center flex-col gap-8' style={{ letterSpacing: '12px', backgroundColor: 'var(--color-beight-light-bg)' }}>
             <div className="" style={{ color: 'var(--color-green-light)' }}>
                 LHS
             </div>

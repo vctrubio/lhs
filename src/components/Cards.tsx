@@ -44,7 +44,7 @@ export const CardHouse: React.FC<CardHouseProps> = ({ house }) => {
         : `https:${house.photos[0].fields.file.url}`;
 
     return (
-        <Link href={`/casas/${house.url}`}>
+        <Link href={`/properties/${house.url}`}>
             <div className="card">
                 <div className="cover">
                     <Image

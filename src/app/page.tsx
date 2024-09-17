@@ -67,6 +67,7 @@ export default function MainPage() {
         <LandingPage />
       </div>
       <div>
+        <NavBar flag={null}/>
         <ClickWiggy />
       </div>
     </div>

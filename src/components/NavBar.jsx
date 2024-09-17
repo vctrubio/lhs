@@ -1,12 +1,12 @@
 
-import { ColorPalette } from "@/app/dev/colors";
 import Link from "next/link";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faWhatsapp, faInstagram, faTelegram } from '@fortawesome/free-brands-svg-icons';
 
 const items = [
-    "casas",
-    "eventos",
-    "madrid",
-    "contacto"
+    "events",
+    "properties",
+    "lifestyle",
 ]
 
 const TopLogo = () => {
@@ -17,15 +17,36 @@ const TopLogo = () => {
     </div>
 }
 
+const TopLogoCallToAction = () => {
+    return (
+        <div className="call-to-action">
+            <div>
+                <FontAwesomeIcon icon={faWhatsapp} size="2x" />
+            </div>
+            <div>
+                <FontAwesomeIcon icon={faInstagram} size="2x" />
+            </div>
+            <div>
+                <FontAwesomeIcon icon={faTelegram} size="2x" />
+            </div>
+        </div>
+    );
+}
+
 const NavBar = ({ flag }) => {
     return (
-        <div className="flex">
-            {flag && <TopLogo />}
-            <div className="navbar">
+        <div >
+            {flag && (
+                <>
+                    <TopLogo />
+                    <TopLogoCallToAction />
+                </>
+            )}
+            <div className="six-ways">
                 {items.map((item) => (
                     <div key={item}>
                         <Link href={`/${item}`} className="w-full h-full">
-                            {item}
+                            {item.charAt(0).toUpperCase() + item.slice(1)}
                         </Link>
                     </div>
                 ))}
@@ -33,6 +54,5 @@ const NavBar = ({ flag }) => {
         </div>
     );
 }
-
 
 export default NavBar;
