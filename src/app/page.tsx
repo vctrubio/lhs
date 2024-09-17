@@ -9,10 +9,20 @@ const SearchBar = () => {
   )
 }
 
+const TigerEye = () => {
+  return (
+    <div id="tiger-eye">
+      <input type="text" placeholder="a concept to/of living" />
+    </div>
+  )
+}
+
 const Logo = () => {
   return (
     <div id="logo">
-      LHS Concept [Logo]<br></br>Luxury Flats and Lifestyle Madrid [Desscription]
+      <div>L</div>
+      <div>H</div>
+      <div>S</div>
     </div>
   )
 }
@@ -33,8 +43,8 @@ const LandingPage = () => {
   return (
     <div className="landing-page">
       <Logo />
-      <SearchBar />
-      <Features />
+      <TigerEye/>
+      {/* <Features /> */}
     </div>
   )
 }
@@ -48,7 +58,7 @@ export default function MainPage() {
         <LandingPage />
       </div>
       <div>
-        <NavBar flag={false}/>
+        <NavBar flag={false} />
         <Banner />
       </div>
     </div>

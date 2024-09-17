@@ -34,6 +34,12 @@
   }
 } */
 
+::selection {
+  background: var(--color-green-light);
+  color: var(--color-beigh-light-bg);
+}
+
+
 body {
   color: var(--foreground);
   background: var(--color-beigh-light-bg);

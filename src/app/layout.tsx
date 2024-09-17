@@ -15,6 +15,7 @@ import "@/css/test.css";
 //   variable: "--font-geist-mono",
 //   weight: "100 900",
 // });
+import { ColorPalette } from "./dev/colors";
 
 import '@fortawesome/fontawesome-svg-core/styles.css'; // Import the CSS
 import { config } from '@fortawesome/fontawesome-svg-core';
@@ -34,8 +35,9 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body
-        // className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      // className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        {/* <ColorPalette/> */}
         {/* <NavBar /> */}
         {children}
       </body>

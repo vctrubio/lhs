@@ -1,4 +1,5 @@
 
+import { ColorPalette } from "@/app/dev/colors";
 import Link from "next/link";
 
 const items = [
