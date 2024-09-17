@@ -223,6 +223,86 @@
     /* Third item in the second row spans 2 columns */
 }
 
+.color-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+}
+
+
+.box {
+    width: 80px;
+    height: 80px;
+    margin: 10px;
+}
+
+.theme-color {
+    background-color: var(--theme-color);
+}
+
+.color-green-dark {
+    background-color: var(--color-green-dark);
+}
+
+.color-green-light {
+    background-color: var(--color-green-light);
+}
+
+.color-blue {
+    background-color: var(--color-blue);
+}
+
+.color-beigh-darkish {
+    background-color: var(--color-beigh-darkish);
+}
+
+.color-beigh-light {
+    background-color: var(--color-beigh-light-bg);
+}
+
+.color-beigh {
+    background-color: var(--color-beigh);
+}
+
+.color-danger {
+    background-color: var(--color-danger);
+}
+
+.color-backup {
+    background-color: var(--color-backup);
+}
+
+.color-info {
+    background-color: var(--color-info);
+}
+
+.color-love {
+    background-color: var(--color-love);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @media (max-width: 768px) {
     .container-twoes {
         flex-wrap: wrap;

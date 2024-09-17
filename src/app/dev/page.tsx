@@ -4,6 +4,11 @@ import React, { useState, useRef, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFilter, faSort, faSearch } from '@fortawesome/free-solid-svg-icons';
 
+import {
+  ColorPalette
+} from './colors';
+
+
 interface ItermProps {
     title: string;
     content: string;
@@ -24,11 +29,12 @@ const Iterm = () => {
                             <FontAwesomeIcon icon={faSearch} />
                         </div>
                         <div className="caplog">
-                            <input type="text" placeholder="" />
+                            search
                         </div>
                     </div>
                     <div id="search-result">
-                        rest of text
+                        rest of text<br></br>
+
                     </div>
                 </div>
                 <div className="tv-controller">
@@ -63,11 +69,14 @@ const SixWayStreet = () => {
 }
 
 
+
 const Testing = () => {
     return (<div className="flex flex-col gap-20 px-20">
-        <div></div>get sexy with me
-        <Iterm />
-        <SixWayStreet />
+   
+        <ColorPalette/>
+
+        {/* <Iterm />
+        <SixWayStreet /> */}
 
     </div>);
 }

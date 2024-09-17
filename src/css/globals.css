@@ -7,6 +7,17 @@
   --dark: #1e1d1b;
   --theme-color: #ff6c11;
 
+  --color-green-dark: #15423B;
+  --color-green-light: #6A9B89;
+  --color-blue: #285F98;
+  --color-beigh-darkish: #CDC2A6;
+  --color-beigh-light-bg: #E1D8C6;
+  --color-beigh: #EAE4DC;
+  --color-danger: #C7253E;
+  --color-backup: #821131;
+  --color-info: #CD5C08;
+  --color-love: #F05A7E;
+
   --tmp-border: 1px solid #000;
   
   --background: var(--light);
@@ -25,7 +36,7 @@
 
 body {
   color: var(--foreground);
-  background: var(--background);
+  background: var(--color-beigh-light-bg);
   font-family: var(--font-times);
   font-size: 1.2rem;
 }
