@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFilter, faSort, faSearch } from '@fortawesome/free-solid-svg-icons';
 
 import {
-  ColorPalette
+    ColorPalette
 } from './colors';
 
 
@@ -68,12 +68,30 @@ const SixWayStreet = () => {
     )
 }
 
-
+const LHS = () => {
+    return (
+        <div className='text-9xl bg-black p-10 text-center h-auto flex items-center justify-center flex-col gap-8' style={{letterSpacing: '12px', backgroundColor: 'var(--color-beight-light-bg)'}}>
+            <div className="" style={{ color: 'var(--color-green-light)' }}>
+                LHS
+            </div>
+            <div className="" style={{ color: 'var(--color-blue)' }}>
+                LHS
+            </div>
+            <div className="" style={{ color: 'var(--color-backup)' }}>
+                LHS
+            </div>
+            <div className="" style={{ color: 'white' }}>
+                LHS
+            </div>
+        </div>
+    )
+}
 
 const Testing = () => {
     return (<div className="flex flex-col gap-20 px-20">
-   
-        <ColorPalette/>
+
+        <ColorPalette />
+        <LHS />
 
         {/* <Iterm />
         <SixWayStreet /> */}
