@@ -11,7 +11,7 @@
     overflow-y: scroll;
 
     >* {
-        border: var(--tmp-border);
+        /* border: var(--tmp-border); */
         scroll-snap-align: start;
         min-height: 100vh;
     }
@@ -60,7 +60,7 @@
 #tiger-eye {
     width: 400px;
     height: 60px;
-    
+
     input {
         width: 100%;
         height: 100%;
@@ -75,6 +75,8 @@
         border: 4px solid transparent;
         border-radius: 25px;
         box-shadow: 0 18px 26px rgba(0, 0, 0, 0.8);
+
+        transition: all 1.4s;
 
         &::placeholder {
             color: black;
@@ -93,6 +95,7 @@
     input:focus::placeholder {
         border-color: var(--color-green-light);
         color: var(--color-green-light);
+        background-color: transparent;
         outline: none;
     }
 

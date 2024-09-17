@@ -16,8 +16,8 @@ const TopLogo = () => {
         </Link>
     </div>
 }
-const NavBar = ({ flag }) => {
 
+const NavBar = ({ flag }) => {
     return (
         <div className="flex">
             {flag && <TopLogo />}

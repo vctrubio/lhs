@@ -1,5 +1,8 @@
 import Banner from "@/components/Banner";
 import NavBar from "@/components/NavBar";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFilter, faSort, faSearch } from '@fortawesome/free-solid-svg-icons';
+import { LHSCard } from "@/components/Lhs"
 
 const SearchBar = () => {
   return (
@@ -9,7 +12,7 @@ const SearchBar = () => {
   )
 }
 
-const TigerEye = () => {
+export const TigerEye = () => {
   return (
     <div id="tiger-eye">
       <input type="text" placeholder="a concept to/of living" />
@@ -43,13 +46,19 @@ const LandingPage = () => {
   return (
     <div className="landing-page">
       <Logo />
-      <TigerEye/>
+      <TigerEye />
       {/* <Features /> */}
     </div>
   )
 }
 
-
+const ClickWiggy = () => {
+  return (
+    <div className="flex justify-center h-screen flex-col">
+      <LHSCard />
+    </div>
+  )
+}
 
 export default function MainPage() {
   return (
@@ -58,8 +67,7 @@ export default function MainPage() {
         <LandingPage />
       </div>
       <div>
-        <NavBar flag={false} />
-        <Banner />
+        <ClickWiggy />
       </div>
     </div>
   );

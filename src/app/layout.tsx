@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "@/css/globals.css";
 import "@/css/pages.css";
 import "@/css/components.css";
+import "@/css/lhs.css";
 import "@/css/test.css";
 
 // import localFont from "next/font/local";
