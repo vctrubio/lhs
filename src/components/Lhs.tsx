@@ -96,8 +96,8 @@ export const LuluCard = () => {
                 <div className='title-box'>
                     <h1>Lourdes Hernansanz</h1>
                     <h2>Directora</h2>
-                    <h3>Localizacion Madrid</h3>
-                    <h3>686 516 248</h3>
+                    <h3>Madrid | <span>Luxury Real Estate</span> </h3>
+                    <h3>+34 616 746 971</h3>
                 </div>
             </div>
         </div>

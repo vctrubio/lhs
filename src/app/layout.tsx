@@ -25,7 +25,37 @@ config.autoAddCss = false; // Tell Font Awesome to skip adding the CSS automatic
 
 export const metadata: Metadata = {
   title: "LHS Concept",
-  description: "Exculsive Madrid Living" //lifestyle, luxury, location
+  description: "Exculsive Madrid Living. Offering a luxry lifestyle, in search for the best homes.", //lifestyle, luxury, location familiy oriented
+  keywords: "luxury, lifestyle, Madrid, exclusive, homes, family-oriented, real estate, high-end living",
+
+  openGraph: {
+    title: "LHS Concept",
+    description: "Exclusive Madrid Living. Offering a luxury lifestyle, in search for the best homes.",
+    type: "website", //article for lifestyle page 
+    url: "https://www.lhsconcept.com",
+
+    images: [
+      {
+        url: "https://yourwebsite.com/og-image.jpg", // Image URL for WhatsApp, Facebook, Pinterest
+        width: 1200, 
+        height: 630,
+        type: "image/jpeg",
+        alt: "Luxury homes in Madrid",
+      },
+    ],
+
+    // Additional Open Graph tags:
+    determiner: "the", // Default determiner when displaying your site. Values: auto, the, a, an, blank (auto by default)
+    siteName: "LHSConcept.com", // The name of your website
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: "@lhsconcept",
+    title: "LHS Concept",
+    description: "Discover the best luxury homes in Madrid for family-oriented living.",
+    images: ["https://yourwebsite.com/twitter-image.jpg"], // Image URL for Twitter
+
+  }
 };
 
 export default function RootLayout({

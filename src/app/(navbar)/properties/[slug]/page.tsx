@@ -3,6 +3,29 @@ import Image from 'next/image'; // Import Next.js Image component
 import { fetchHouseByID } from '@/lib/bridges';
 import { House } from '@/types/house';
 
+import Head from 'next/head';
+
+/* HERE TO ADD META DATA FOR SEO 
+https://nextjs.org/docs/app/building-your-application/optimizing/metadata
+*/
+const MetaData = ({ house }) => (
+    <Head>
+        <title>{house.title} - Property Details</title>
+        <meta name="description" content={house.description} />
+        <meta property="og:title" content={house.title} />
+        <meta property="og:description" content={house.description} />
+        <meta property="og:image" content={`https:${house.photos[0].fields.file.url}`} />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={house.title} />
+        <meta name="twitter:description" content={house.description} />
+        <meta name="twitter:image" content={`https:${house.photos[0].fields.file.url}`} />
+    </Head>
+);
+
+
+
+
 const CardIdPage = async ({ params }) => {
     const { slug } = params; // Assuming slug is passed as part of the dynamic route
 

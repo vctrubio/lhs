@@ -269,10 +269,10 @@
 
     >* {
         /* border: 1px solid black; */
-        padding-top: 2.5rem;
+        padding-top: 1.5rem;
         padding-left: 3.5rem;
         padding-right: 3.5rem;
-        padding-bottom: .5rem;
+        padding-bottom: 1.5rem;
         text-align: center;
         &:hover {
             background-color: inherit;
@@ -293,7 +293,7 @@
     }
 
     >*:nth-child(3):hover {
-        background-color: var(--hover-color-yellow);
+        background-color: var(--hover-color-blue);
     }
 
 }

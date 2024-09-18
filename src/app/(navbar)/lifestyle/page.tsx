@@ -43,7 +43,7 @@ const FancyPants = () => {
                 <div>On a mission to help you discover your authentic home... </div>
                 <div>Where lifestyle meets identity.</div>
                 <h2>We offer our services through a tailored experience,</h2>
-                <div>by cnnecting exceptional individuals with their aspirations.</div>
+                <div>by connecting exceptional individuals with their aspirations.</div>
                 <h2>Delivering an authentic <span>Madrileño</span> lifestyle.</h2>
             </div>
         </div>

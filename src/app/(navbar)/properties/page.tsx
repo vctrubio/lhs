@@ -34,7 +34,7 @@ const HomePage = async () => {
 
     return (
         <>
-            <NavBarUnder />
+            {/* <NavBarUnder /> */}
             <div className='card-homes-container'>
                 {entries.map((entry: House) => (
                     <CardHouse house={entry} key={entry.url} />
