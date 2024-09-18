@@ -3,6 +3,7 @@ import { fetchHouseEntries } from '@/lib/bridges'
 import { House } from '@/types/house';
 import { CardHouse } from '@/components/Cards';
 import { NavBarUnder } from '@/components/SearchBar';
+import { LeftBar} from '@/components/CredBar';
 
 const Objective = () => {
     return (
@@ -39,7 +40,7 @@ const HomePage = async () => {
                     <CardHouse house={entry} key={entry.url} />
                 ))}
             </div>
-            {/* <Objective/>    */}
+            <LeftBar/>
         </>
     )
 }

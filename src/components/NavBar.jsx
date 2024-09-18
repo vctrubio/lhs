@@ -17,7 +17,7 @@ const TopLogo = () => {
     </div>
 }
 
-const TopLogoCallToAction = () => {
+const LeftFootBar = () => {
     return (
         <div className="call-to-action">
             <div>
@@ -39,7 +39,7 @@ const NavBar = ({ flag }) => {
             {flag && (
                 <>
                     <TopLogo />
-                    <TopLogoCallToAction />
+                    <LeftFootBar />
                 </>
             )}
             <div className="six-ways">

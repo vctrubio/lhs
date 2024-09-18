@@ -28,6 +28,8 @@
 
   --font-verdana: Verdana, Geneva, Tahoma, sans-serif;
   --font-times: Times, Times New Roman, serif;
+
+  --width-bar: 220px;
 }
 
 /* @media (prefers-color-scheme: dark) {
