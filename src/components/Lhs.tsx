@@ -4,8 +4,8 @@ import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { TigerEye } from '@/app/page';
-
-
+import Image from 'next/image';
+import PhotoPerfil from '@/assets/foto_carnet_victor.png';
 interface LhsTvBox {
     title: string;
     content: string;
@@ -70,4 +70,37 @@ export const LHSCard = ({ tv = lhsTitle }: LhsTvBox) => {
             </div>
         </div>
     );
+}
+
+export const LuluCard = () => {
+
+    const PhotoBox = () => {
+        return (
+            <div style={{ overflow: 'hidden', border: '1px solid transparent', borderRadius: '24px' }}>
+                <div className='photo-box'>
+                    <Image
+                        src={PhotoPerfil}
+                        alt='Lourdes Hernansanz'
+                        width={300}
+                    ></Image>
+                </div>
+            </div>
+        )
+    }
+
+    return (
+
+        <div className="lhs-concept">
+            <div className="lhs-twins">
+                <PhotoBox />
+                <div className='title-box'>
+                    <h1>Lourdes Hernansanz</h1>
+                    <h2>Directora</h2>
+                    <h3>Localizacion Madrid</h3>
+                    <h3>686 516 248</h3>
+                </div>
+            </div>
+        </div>
+    )
+
 }
