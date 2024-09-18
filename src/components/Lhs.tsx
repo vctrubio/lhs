@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
-import { TigerEye } from '@/app/page';
 import Image from 'next/image';
 import PhotoPerfil from '@/assets/foto_carnet_victor.png';
 interface LhsTvBox {
@@ -11,13 +10,16 @@ interface LhsTvBox {
     content: string;
 }
 
+interface LHSCardProps {
+    tv?: LhsTvBox;
+}
+
 const lhsTitle: LhsTvBox = {
     title: 'LHS',
-    // content: 'Concept of living -- Looking for the best deals in Madrid -- With love and care -- sometimes we cant  -- understand the rules -- but this is the last -- time i will shoot'
     content: 'Concept of living -- Looking for the best deals in Madrid'
 }
 
-export const LHSCard = ({ tv = lhsTitle }: LhsTvBox) => {
+export const LHSCard = ({ tv = lhsTitle }: LHSCardProps) => {
 
     const SearchBox = () => {
         const [inputWidth, setInputWidth] = useState(22); // Minimum width of 18px
@@ -27,7 +29,7 @@ export const LHSCard = ({ tv = lhsTitle }: LhsTvBox) => {
             const newWidth = Math.max(24, textLength * 9); // Adjust the width based on character length
             setInputWidth(Math.min(newWidth, 318)); // Set a maximum width of 400px
         };
-
+        
         return (
             <div className="i-search">
                 <div className="i-got-it">

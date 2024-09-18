@@ -1,4 +1,4 @@
-import { LHSCard, LuluCard } from "@/components/Lhs"
+import { LuluCard } from "@/components/Lhs"
 
 
 const lhsTitle = {

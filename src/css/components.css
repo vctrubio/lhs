@@ -293,7 +293,7 @@
     }
 
     >*:nth-child(3):hover {
-        background-color: var(--hover-color-blue);
+        background-color: var(--hover-color-yellow);
     }
 
 }

@@ -2,7 +2,7 @@ import Banner from "@/components/Banner";
 import NavBar from "@/components/NavBar";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFilter, faSort, faSearch } from '@fortawesome/free-solid-svg-icons';
-import { LHSCard } from "@/components/Lhs"
+import {  } from "@/components/Lhs"
 
 const SearchBar = () => {
   return (
@@ -48,14 +48,6 @@ const LandingPage = () => {
       <Logo />
       <TigerEye />
       {/* <Features /> */}
-    </div>
-  )
-}
-
-const ClickWiggy = () => {
-  return (
-    <div className="flex justify-center h-screen flex-col">
-      <LHSCard />
     </div>
   )
 }
