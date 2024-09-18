@@ -143,3 +143,58 @@
         font-weight: 200;
     }
 }
+
+
+
+.what-we-do{
+    display: flex;
+    flex-direction: column;
+
+    font: 1.2rem 'Patrick Hand', cursive;
+    letter-spacing: 1px;
+    line-height: 2.5;
+    text-align: center;
+    h2{
+        margin-top: 18px;
+        font-weight: bolder;
+    }
+    span{
+        font-style: italic;
+        opacity: 0.9;
+    }
+}
+
+
+.subscribe-now{
+    /* border: 1px solid black; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 42px;
+    width: 442px;
+    margin: 0 auto;
+    border: 1px solid var(--color-green-dark);
+    border-radius: 24px;
+    overflow: hidden;
+    input{
+        height: 100%;
+        width: 100%;
+        background-color: transparent;
+        text-align: center;
+    }
+    input:focus {
+        outline: yellow;
+    }
+
+    &:focus-within {
+        border-color: var(--color-green-light)
+    }
+    
+    button{
+        background-color: var(--color-green-light);
+        padding: 4px;
+        height: 110%;
+        width: 120px;
+        border-radius: 24px;
+    }
+}

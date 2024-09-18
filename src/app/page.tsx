@@ -15,7 +15,7 @@ const SearchBar = () => {
 export const TigerEye = () => {
   return (
     <div id="tiger-eye">
-      <input type="text" placeholder="a concept to/of living" />
+      <input type="text" placeholder="a concept of living" />
     </div>
   )
 }
@@ -68,7 +68,7 @@ export default function MainPage() {
       </div>
       <div>
         <NavBar flag={null}/>
-        <ClickWiggy />
+        {/* <ClickWiggy /> */}
       </div>
     </div>
   );

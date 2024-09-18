@@ -44,11 +44,11 @@ const NavBar = ({ flag }) => {
             )}
             <div className="six-ways">
                 {items.map((item) => (
-                    <div key={item}>
-                        <Link href={`/${item}`} className="w-full h-full">
+                    <Link href={`/${item}`} key={item}>
+                        <div className="w-full h-full cursor-pointer">
                             {item.charAt(0).toUpperCase() + item.slice(1)}
-                        </Link>
-                    </div>
+                        </div>
+                    </Link>
                 ))}
             </div>
         </div>

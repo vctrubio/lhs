@@ -57,3 +57,14 @@ body {
     text-wrap: balance;
   }
 }
+
+.flex-mob{
+  display: flex;
+}
+
+@media screen and (max-width: 964px) {
+  .flex-mob{
+    flex-direction: column;
+  }
+  
+}

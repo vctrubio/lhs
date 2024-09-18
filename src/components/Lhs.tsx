@@ -90,7 +90,7 @@ export const LuluCard = () => {
 
     return (
 
-        <div className="lhs-concept">
+        <div className="lhs-concept" style={{height: '300px'}}>
             <div className="lhs-twins">
                 <PhotoBox />
                 <div className='title-box'>
