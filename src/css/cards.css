@@ -1,0 +1,56 @@
+.property {
+    min-width: 520px;
+    /* max-width: 740px; */
+    min-height: 420px;
+    flex-grow: 1;
+    margin: 14px;
+    position: relative;
+}
+
+.property-container {
+    margin-left: var(--width-bar);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+}
+
+.property-title {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 2px 8px;
+
+    h1 {
+        font-size: 18px;
+        font-weight: 600;
+        letter-spacing: 1px;
+    }
+
+    h2 {
+        font-size: 18px;
+        font-weight: 400;
+        opacity: 0.6;
+    }
+}
+
+.property-banner {
+    position: relative;
+    height: 90%;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.property-desc {
+    display: none;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    justify-content: space-around;
+    padding: 12px 32px;
+    background-color: var(--color-green-light);
+}
+
+/* Show .property-desc when .property is hovered */
+.property:hover .property-desc {
+    display: flex;
+}

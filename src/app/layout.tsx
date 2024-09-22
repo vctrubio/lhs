@@ -3,7 +3,9 @@ import "@/css/globals.css";
 import "@/css/pages.css";
 import "@/css/components.css";
 import "@/css/lhs.css";
+import "@/css/collage.css";
 import "@/css/test.css";
+import "@/css/cards.css";
 
 // import localFont from "next/font/local";
 // const geistSans = localFont({
@@ -49,9 +51,10 @@ export const metadata: Metadata = {
     siteName: "LHSConcept.com", // The name of your website
   },
   twitter: {
-    card: "summary_large_image",
+    card: "summary_large_image", // summary, summary_large_image, app, player
     site: "@lhsconcept",
     title: "LHS Concept",
+    creator: "Lourdes Hernansanz",
     description: "Discover the best luxury homes in Madrid for family-oriented living.",
     images: ["https://yourwebsite.com/twitter-image.jpg"], // Image URL for Twitter
 
@@ -75,3 +78,12 @@ export default function RootLayout({
     </html>
   );
 }
+
+
+
+
+/*
+Twitter carad vifeo embedment for EVENT page
+
+
+*/

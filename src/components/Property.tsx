@@ -1,25 +1,22 @@
-
-import { House } from "@/types/house";
-import Image from 'next/image';
-import Link from 'next/link';
-
-interface CardHouseProps {
-    house: House;
-}
-
-
+import { House } from "@/types/house"
+import Image from "next/image";
+import Link from "next/link";
 
 function formatCurrency(value: number, rent: boolean = false): any {
-    const formattedValue = value.toLocaleString('de-DE');
+    let formattedValue;
+    if (value >= 1_000_000) {
+        formattedValue = (value / 1_000_000).toFixed(1) + 'M';
+    } else if (value >= 1_000) {
+        formattedValue = (value / 1_000).toFixed(0) + 'K';
+    } else {
+        formattedValue = value.toLocaleString('de-DE');
+    }
+
     return (
         <>
             {formattedValue} <span className="italic">€{rent ? '' : '/mes'}</span>
         </>
     );
-}
-
-function getRentOrBuyText(buyOrRent: boolean): string {
-    return buyOrRent ? 'buy' : 'rent';
 }
 
 interface DescBoxProps {
@@ -35,39 +32,38 @@ const DescBox: React.FC<DescBoxProps> = ({ text, svg }) => {
     );
 };
 
-export const CardHouse: React.FC<CardHouseProps> = ({ house }) => {
-    console.log("🚀 ~ house:", house)
+export const PropertyCard = ({ house }: { house: House }) => {
 
-    //**find a default house if not available 
     const coverPhoto = house.photos[0].fields.file.url.startsWith('http')
         ? house.photos[0].fields.file.url
         : `https:${house.photos[0].fields.file.url}`;
+    console.log("🚀 ~ PropertyCard ~ coverPhoto:", coverPhoto)
+
 
     return (
-        <Link href={`/properties/${house.url}`}>
-            <div className="card">
-                <div className="cover">
+        <div className="property">
+            <Link href={`/properties/${house.url}`}>
+                <div className="property-title">
+                    <h1>{house.title}</h1>
+                    <h2>{formatCurrency(house.precio, house.buyOrRent)}</h2>
+                </div>
+                <div className="property-banner">
                     <Image
                         src={coverPhoto}
                         alt={house.title}
                         layout="fill"
                         objectFit="cover"
-                        loading="lazy"
                         quality={100}
+                        // loading="lazy"
+                        priority // Added priority property
                     />
-                    <div id='rent-or-buy'>{getRentOrBuyText(house.buyOrRent)}</div>
-                </div>
-                <div className="desc">
-                    <div>
+                    <div className="property-desc">
                         <DescBox text={String(house.totalArea)} svg='M2'></DescBox>
                         <DescBox text={String(house.rooms.Bedroom)} svg='📦'></DescBox>
                         <DescBox text={String(house.barrioRef.name)} svg='📍'></DescBox>
                     </div>
-                    <div>
-                        <div>{formatCurrency(house.precio, house.buyOrRent)}</div>
-                    </div>
                 </div>
-            </div>
-        </Link>
-    );
+            </Link>
+        </div >
+    )
 }
