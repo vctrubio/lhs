@@ -3,6 +3,7 @@ import NavBar from "@/components/NavBar";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFilter, faSort, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { LHSCard } from "@/components/Lhs"
+import TigerEye from "@/components/TigerEye"
 
 const SearchBar = () => {
   return (
