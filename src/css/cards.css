@@ -47,8 +47,8 @@
     width: 100%;
     justify-content: space-around;
     padding: 12px 32px;
-    background-color: var(--color-green-light);
-}
+    background-color: var(--color-green-light); /* question color*/
+} 
 
 /* Show .property-desc when .property is hovered */
 .property:hover .property-desc {
