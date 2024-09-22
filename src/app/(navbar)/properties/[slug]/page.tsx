@@ -9,7 +9,7 @@ import Lightbox from 'yet-another-react-lightbox';
 import 'yet-another-react-lightbox/styles.css'; // Import the lightbox styles
 
 /* MetaData for SEO */
-export const MetaData = ({ house }) => (
+const MetaData = ({ house }) => (
     <Head>
         <title>{house.title} - Property Details</title>
         <meta name="description" content={house.description} />
