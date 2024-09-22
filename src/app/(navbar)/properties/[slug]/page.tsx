@@ -1,8 +1,12 @@
-import React from 'react';
-import Image from 'next/image'; // Import Next.js Image component
-import { fetchHouseByID } from '@/lib/bridges';
+'use client'; // Ensure it's a client-side component
+
+import React, { useState, useEffect } from 'react';
+import Image from 'next/image';
 import { House } from '@/types/house';
+import { fetchHouseByID } from '@/lib/bridges';
 import Head from 'next/head';
+import Lightbox from 'yet-another-react-lightbox';
+import 'yet-another-react-lightbox/styles.css'; // Import the lightbox styles
 
 /* MetaData for SEO */
 export const MetaData = ({ house }) => (
@@ -20,25 +24,47 @@ export const MetaData = ({ house }) => (
     </Head>
 );
 
-const CardIdPage = async ({ params }) => {
+const CardIdPage = ({ params }) => {
+    const [house, setHouse] = useState<House | null>(null);
+    const [isOpen, setIsOpen] = useState(false); // State for controlling the lightbox
+    const [photoIndex, setPhotoIndex] = useState(0); // Track which photo is being displayed
+
     const { slug } = params; // Assuming slug is passed as part of the dynamic route
-    const house: House | null = await fetchHouseByID(slug);
+
+    // Fetch house data client-side
+    useEffect(() => {
+        const fetchHouse = async () => {
+            const fetchedHouse = await fetchHouseByID(slug);
+            setHouse(fetchedHouse);
+        };
+        fetchHouse();
+    }, [slug]);
 
     if (!house) {
-        return <div>House not found</div>;
+        return <div>Loading...</div>;
     }
+
+    const images = house.photos.map(photo => ({
+        src: photo.fields.file.url.startsWith('http') ? photo.fields.file.url : `https:${photo.fields.file.url}`
+    }));
 
     return (
         <>
-            <MetaData house={house} />  {/* not showing in head */}
+            <MetaData house={house} /> {/* Meta tags for SEO */}
             <div className="max-w-8xl mx-auto mt-2">
-                <MetaData house={house} />
                 <div className="bg-white rounded-lg shadow-lg overflow-hidden">
 
-                    {/* Album-style images at the top */}
+                    {/* Photo Collage */}
                     <div className="photo-collage">
                         {house.photos.map((photo, idx) => (
-                            <div key={idx} className={`photo-wrapper photo-${idx}`}>
+                            <div
+                                key={idx}
+                                className={`photo-wrapper photo-${idx}`}
+                                onClick={() => {
+                                    setPhotoIndex(idx);
+                                    setIsOpen(true);
+                                }} // Open lightbox on click
+                            >
                                 <Image
                                     src={photo.fields.file.url.startsWith('http') ? photo.fields.file.url : `https:${photo.fields.file.url}`}
                                     alt={house.title}
@@ -51,6 +77,15 @@ const CardIdPage = async ({ params }) => {
                         ))}
                     </div>
 
+                    {/* Lightbox */}
+                    {isOpen && (
+                        <Lightbox
+                            open={isOpen}
+                            close={() => setIsOpen(false)}
+                            slides={images}
+                            index={photoIndex} // Start from the clicked image
+                        />
+                    )}
 
                     {/* Property Info */}
                     <div className="p-6">
