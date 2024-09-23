@@ -1,10 +1,7 @@
 import React from 'react';
 import { fetchHouseEntries } from '@/lib/bridges'
 import { House } from '@/types/house';
-import { CardHouse } from '@/components/Cards';
-import { NavBarUnder } from '@/components/SearchBar';
-import { LeftBar } from '@/components/CredBar';
-import { PropertyCard } from '@/components/Property'
+import {SNF} from '@/components/SearchFilter'
 
 const Objective = () => {
     return (
@@ -35,15 +32,7 @@ const HomePage = async () => {
 
     return (
         <>
-            {/* <NavBarUnder /> */}
-            {/* <div className='card-homes-container'> */}
-            <div className='property-container'>
-                {entries.map((entry: House) => (
-                    // <CardHouse house={entry} key={entry.url} />
-                    <PropertyCard house={entry} key={entry.url}/>
-                ))}
-            </div>
-            <LeftBar />
+            <SNF entries={entries}/>
         </>
     )
 }

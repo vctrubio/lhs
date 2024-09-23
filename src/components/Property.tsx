@@ -1,6 +1,7 @@
 import { House } from "@/types/house"
 import Image from "next/image";
 import Link from "next/link";
+import { getTotalRooms } from "@/lib/utils";
 
 function formatCurrency(value: number, rent: boolean = false): any {
     let formattedValue;
@@ -59,7 +60,7 @@ export const PropertyCard = ({ house }: { house: House }) => {
                     />
                     <div className="property-desc">
                         <DescBox text={String(house.totalArea)} svg='M2'></DescBox>
-                        <DescBox text={String(house.rooms.Bedroom)} svg='📦'></DescBox>
+                        <DescBox text={String(getTotalRooms(house.rooms))} svg='📦' />
                         <DescBox text={String(house.barrioRef.name)} svg='📍'></DescBox>
                     </div>
                 </div>

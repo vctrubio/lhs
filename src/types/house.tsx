@@ -18,13 +18,14 @@ export interface Rooms {
   Laundry?: number;
   Bathroom?: number;
   Servicio?: number;
+  [key: string]: number | undefined; // Add this line
 }
 
 export interface House {
   title: string;
   url: string;
   description: string;
-  buyOrRent: boolean; //true is RENT
+  buyOrRent: boolean;
   photos: Photo[];
   precio: number;
   totalArea: number;
