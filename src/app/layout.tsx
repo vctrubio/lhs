@@ -6,7 +6,7 @@ import "@/css/search-filter.css";
 import "@/css/lhs.css";
 import "@/css/collage.css";
 import "@/css/test.css";
-import "@/css/cards.css";
+import "@/css/property-card.css";
 
 // import localFont from "next/font/local";
 // const geistSans = localFont({

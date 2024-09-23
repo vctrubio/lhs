@@ -22,7 +22,12 @@
   --color-love: #F05A7E;
   --color-sad: #999495;
   --tmp-border: 1px solid #000;
-  
+ 
+  --hover-color-red: #c08787;
+  --hover-color-green: #6A9B89;
+  --hover-color-blue: #285e9887;
+  --hover-color-yellow: #fabc3fc7;
+
   --background: var(--light);
   --foreground: var(--dark);
 

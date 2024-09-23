@@ -6,7 +6,6 @@ import LeftBar from "@/components/CredBar"
 import { getTotalRooms } from "@/lib/utils";
 
 export const SNF = ({ entries }: { entries: House[] }) => {
-    window.e = entries;
     const [filteredHouses, setFilteredHouses] = useState<House[]>(entries);
     const [searchQuery, setSearchQuery] = useState('');
     const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
@@ -97,3 +96,8 @@ export const SNF = ({ entries }: { entries: House[] }) => {
         </>
     );
 }
+
+
+/**todo
+ * when search is active or sort by other than price, show proeprt-desc by property-desc.highlight in css state
+ */

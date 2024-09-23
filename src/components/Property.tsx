@@ -1,7 +1,9 @@
-import { House } from "@/types/house"
+import { House } from "@/types/house";
 import Image from "next/image";
 import Link from "next/link";
 import { getTotalRooms } from "@/lib/utils";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faRulerCombined, faBed, faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons'; // Import icons
 
 function formatCurrency(value: number, rent: boolean = false): any {
     let formattedValue;
@@ -22,24 +24,21 @@ function formatCurrency(value: number, rent: boolean = false): any {
 
 interface DescBoxProps {
     text: string;
-    svg: string;
+    icon: any;
 }
-const DescBox: React.FC<DescBoxProps> = ({ text, svg }) => {
+const DescBox: React.FC<DescBoxProps> = ({ text, icon }) => {
     return (
-        <div>
-            <span>{text}</span> -
-            <span>{svg}</span>
+        <div className="desc-box">
+            <FontAwesomeIcon icon={icon} className="desc-icon" />
+            <span>{text}</span>
         </div>
     );
 };
 
 export const PropertyCard = ({ house }: { house: House }) => {
-
     const coverPhoto = house.photos[0].fields.file.url.startsWith('http')
         ? house.photos[0].fields.file.url
         : `https:${house.photos[0].fields.file.url}`;
-    console.log("🚀 ~ PropertyCard ~ coverPhoto:", coverPhoto)
-
 
     return (
         <div className="property">
@@ -55,16 +54,15 @@ export const PropertyCard = ({ house }: { house: House }) => {
                         layout="fill"
                         objectFit="cover"
                         quality={100}
-                        // loading="lazy"
-                        priority // Added priority property
+                        priority
                     />
                     <div className="property-desc">
-                        <DescBox text={String(house.totalArea)} svg='M2'></DescBox>
-                        <DescBox text={String(getTotalRooms(house.rooms))} svg='📦' />
-                        <DescBox text={String(house.barrioRef.name)} svg='📍'></DescBox>
+                        <DescBox text={`${house.totalArea} m²`} icon={faRulerCombined} /> {/* Square meters */}
+                        <DescBox text={String(getTotalRooms(house.rooms))} icon={faBed} /> {/* Rooms */}
+                        <DescBox text={String(house.barrioRef.name)} icon={faMapMarkerAlt} /> {/* Location */}
                     </div>
                 </div>
             </Link>
         </div >
-    )
-}
+    );
+};

@@ -1,0 +1,123 @@
+/* Property Container with smooth transitions */
+.property-container {
+    margin-left: var(--width-bar);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+    gap: 2px;
+    min-height: 80vh;
+    transition: all 0.5s ease; /* Smooth transitions for rearrangement */
+}
+
+.property-title{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 2px 8px;
+
+    h1 {
+        font-size: 18px;
+        font-weight: 600;
+        letter-spacing: 1px;
+    }
+
+    h2 {
+        font-size: 18px;
+        font-weight: 400;
+        opacity: 0.6;
+    }
+
+}
+
+/* Property Card with fade-in, fade-out, and slide effect */
+.property {
+    min-width: 520px;
+    min-height: 420px;
+    flex-grow: 1;
+    margin: 14px;
+    position: relative;
+    opacity: 1; /* Default visible state */
+    transform: translateY(0); /* Default position */
+    transition: opacity 0.5s ease, transform 0.5s ease; /* Smooth opacity and movement */
+}
+
+/* Hover effect: subtle tilt and shadow */
+.property:hover {
+    transform: perspective(1000px) rotateX(3deg) rotateY(3deg);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.property-desc.highlight {
+    opacity: 1; /* Make it fully visible */
+    transform: translateY(0);
+}
+
+/* Property that will disappear */
+.property.fade-out {
+    opacity: 0;
+    transform: translateY(20px); /* Move down slightly when disappearing */
+    pointer-events: none; /* Disable interactions while fading out */
+}
+
+
+/* Fade-in and slide-up animation */
+@keyframes fadeInSlide {
+    0% {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Image and property banner hover effect */
+.property-banner {
+    position: relative;
+    height: 90%;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.property-banner img {
+    transition: transform 0.4s ease;
+}
+
+/* Property Description that appears on hover */
+.property-desc {
+    display: none;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    justify-content: space-around;
+    padding: 12px 32px;
+    background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent background */
+    color: white;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.desc-box {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Space between the icon and text */
+}
+
+.desc-icon {
+    font-size: 18px; /* Adjust icon size */
+    color: #fff; /* Icon color */
+}
+
+/* Show .property-desc when .property is hovered */
+.property:hover .property-desc {
+    display: flex;
+    opacity: 1;
+    transform: translateY(0); /* Slide up effect */
+}
+
+/* Add transition to smoothly rearrange the cards */
+.property-container .property {
+    transition: all 0.5s ease-in-out;
+}
