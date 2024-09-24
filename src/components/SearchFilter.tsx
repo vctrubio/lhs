@@ -11,10 +11,11 @@ export const SNF = ({ entries }: { entries: House[] }) => {
     const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('desc');
     const [sortBy, setSortBy] = useState<'precio' | 'totalArea' | 'totalRooms'>('precio');
     const [filter, setFilter] = useState<'rent' | 'buy' | 'all'>('all');
-    const [reformadoFilter, setReformadoFilter] = useState<'all' | 'reformado' | 'sinReformar'>('all'); // 3-way state for reformado filter
-    const allBarrios = Array.from(new Set(entries.map(entry => entry.barrioRef?.name))); // Get unique barrios
-    const [selectedBarrios, setSelectedBarrios] = useState<string[]>(allBarrios); // Barrios selected by default
-
+    const [reformadoFilter, setReformadoFilter] = useState<'all' | 'reformado' | 'sinReformar'>('all');
+    const allBarrios = Array.from(new Set(entries.map(entry => entry.barrioRef?.name)));
+    const [selectedBarrios, setSelectedBarrios] = useState<string[]>(allBarrios);
+    const [cssStateHover, setCssStateHover] = useState(false);
+    const [cssUniqueBoy, setUniqueBoy] = useState(false);
     // Count houses per barrio
     const houseCountsByBarrio = allBarrios.reduce((acc, barrio) => {
         acc[barrio] = entries.filter(entry => entry.barrioRef?.name === barrio).length;
@@ -30,6 +31,20 @@ export const SNF = ({ entries }: { entries: House[] }) => {
         setSelectedBarrios(allBarrios); // Reset barrios to all selected
         setReformadoFilter('all'); // Reset reformado filter to "All"
     };
+
+    useEffect(() => {
+        if (searchQuery.length > 0 || sortBy !== 'precio' || reformadoFilter !== 'all')
+            setCssStateHover(true);
+        else
+            setCssStateHover(false);
+    }, [searchQuery, sortBy, reformadoFilter])
+
+    useEffect(() => {
+        if (filteredHouses.length === 1)
+            setUniqueBoy(true);
+        else
+            setUniqueBoy(false);
+    }, [filteredHouses])
 
     // Filter and sort logic
     useEffect(() => {
@@ -93,7 +108,7 @@ export const SNF = ({ entries }: { entries: House[] }) => {
                 reformadoFilter={reformadoFilter} // Pass reformado filter
                 setReformadoFilter={setReformadoFilter} // Function to update the reformado filter
             />
-            <div className="property-container">
+            <div className="property-container" last-man-standing={cssUniqueBoy? 'on' : ''}>
                 {filteredHouses.length === 0 ? (
                     <div className="no-results">
                         <p>No results found.</p>
@@ -101,7 +116,7 @@ export const SNF = ({ entries }: { entries: House[] }) => {
                     </div>
                 ) : (
                     filteredHouses.map((entry: House) => (
-                        <PropertyCard house={entry} key={entry.url} />
+                        <PropertyCard house={entry} key={entry.url} cssStateHover={cssStateHover}/>
                     ))
                 )}
             </div>

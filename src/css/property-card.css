@@ -6,10 +6,11 @@
     justify-content: start;
     gap: 2px;
     min-height: 80vh;
-    transition: all 0.5s ease; /* Smooth transitions for rearrangement */
+    transition: all 0.5s ease;
+    /* Smooth transitions for rearrangement */
 }
 
-.property-title{
+.property-title {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -36,9 +37,12 @@
     flex-grow: 1;
     margin: 14px;
     position: relative;
-    opacity: 1; /* Default visible state */
-    transform: translateY(0); /* Default position */
-    transition: opacity 0.5s ease, transform 0.5s ease; /* Smooth opacity and movement */
+    opacity: 1;
+    /* Default visible state */
+    transform: translateY(0);
+    /* Default position */
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    /* Smooth opacity and movement */
 }
 
 /* Hover effect: subtle tilt and shadow */
@@ -48,29 +52,20 @@
 }
 
 .property-desc.highlight {
-    opacity: 1; /* Make it fully visible */
+    opacity: 1;
+    /* Make it fully visible */
     transform: translateY(0);
 }
 
 /* Property that will disappear */
 .property.fade-out {
     opacity: 0;
-    transform: translateY(20px); /* Move down slightly when disappearing */
-    pointer-events: none; /* Disable interactions while fading out */
+    transform: translateY(20px);
+    /* Move down slightly when disappearing */
+    pointer-events: none;
+    /* Disable interactions while fading out */
 }
 
-
-/* Fade-in and slide-up animation */
-@keyframes fadeInSlide {
-    0% {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
 
 /* Image and property banner hover effect */
 .property-banner {
@@ -84,40 +79,62 @@
     transition: transform 0.4s ease;
 }
 
-/* Property Description that appears on hover */
 .property-desc {
-    display: none;
+    display: flex;
     position: absolute;
     bottom: 0;
     width: 100%;
     justify-content: space-around;
-    padding: 12px 32px;
-    background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent background */
+    padding: 18px 32px;
+    background-color: rgba(0, 0, 0, 0.6);
     color: white;
-    opacity: 1;
+    opacity: 0;
     transform: translateY(20px);
-    transition: transform 0.3s ease, opacity 0.3s ease;
+    transition: transform 0.6s ease, opacity 0.3s ease;
+}
+
+.property[css-state="on"] .property-desc {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.property-container[last-man-standing="on"] .property:hover {
+    transform: none;
+    /* or any transformation reset you want */
+    transition: none;
+    /* Disable transition if needed */
 }
 
 .desc-box {
     display: flex;
     align-items: center;
-    gap: 8px; /* Space between the icon and text */
+    gap: 8px;
 }
 
 .desc-icon {
-    font-size: 18px; /* Adjust icon size */
-    color: #fff; /* Icon color */
+    font-size: 18px;
+    color: #fff;
 }
 
-/* Show .property-desc when .property is hovered */
 .property:hover .property-desc {
     display: flex;
     opacity: 1;
-    transform: translateY(0); /* Slide up effect */
+    transform: translateY(0);
+    /* Slide up effect */
 }
 
-/* Add transition to smoothly rearrange the cards */
 .property-container .property {
     transition: all 0.5s ease-in-out;
+}
+
+@keyframes fadeInSlide {
+    0% {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }

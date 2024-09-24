@@ -35,13 +35,13 @@ const DescBox: React.FC<DescBoxProps> = ({ text, icon }) => {
     );
 };
 
-export const PropertyCard = ({ house }: { house: House }) => {
+export const PropertyCard = ({ house, cssStateHover }: { house: House, cssStateHover: boolean }) => {
     const coverPhoto = house.photos[0].fields.file.url.startsWith('http')
         ? house.photos[0].fields.file.url
         : `https:${house.photos[0].fields.file.url}`;
 
     return (
-        <div className="property">
+        <div className="property" css-state={cssStateHover ? 'on' : ''}>
             <Link href={`/properties/${house.url}`}>
                 <div className="property-title">
                     <h1>{house.title}</h1>
