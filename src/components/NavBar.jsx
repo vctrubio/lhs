@@ -1,8 +1,8 @@
 
 import Link from "next/link";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faWhatsapp, faInstagram, faTelegram } from '@fortawesome/free-brands-svg-icons';
-
+import { faWhatsapp, faInstagram } from '@fortawesome/free-brands-svg-icons';
+import { faPaperPlane } from '@fortawesome/free-regular-svg-icons';
 const items = [
     "events",
     "properties",
@@ -27,7 +27,7 @@ const LeftFootBar = () => {
                 <FontAwesomeIcon icon={faInstagram} size="2x" />
             </div>
             <div>
-                <FontAwesomeIcon icon={faTelegram} size="2x" />
+                <FontAwesomeIcon icon={faPaperPlane} size="2x" />
             </div>
         </div>
     );

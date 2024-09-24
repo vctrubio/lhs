@@ -7,6 +7,9 @@ import { fetchHouseByID } from '@/lib/bridges';
 import Head from 'next/head';
 import Lightbox from 'yet-another-react-lightbox';
 import 'yet-another-react-lightbox/styles.css'; // Import the lightbox styles
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSnowflake, faFire, faConciergeBell, faBox, faElevator, faTshirt, faCar, faSun } from '@fortawesome/free-solid-svg-icons';
+import { Amentities } from '@/types/house';
 
 /* MetaData for SEO */
 const MetaData = ({ house }) => (
@@ -24,12 +27,45 @@ const MetaData = ({ house }) => (
     </Head>
 );
 
+
+const AmentitiesIcons = ({ amentities }: { amentities: Amentities }) => {
+    const iconMap = {
+        ac: { icon: faSnowflake, label: 'AC' },
+        heating: { icon: faFire, label: 'Calefacion' },
+        portero: { icon: faConciergeBell, label: 'Portero' },
+        trastero: { icon: faBox, label: 'Trastero' },
+        elevator: { icon: faElevator, label: 'Ascensor' },
+        laundry: { icon: faTshirt, label: 'Lavenderia' },
+        parking: { icon: faCar, label: 'Parking' },
+        rooftop: { icon: faSun, label: 'Atico' },
+    };
+
+    return (
+        <div className="flex justify-center items-center gap-4">
+            {Object.entries(amentities).map(([key, value]) => {
+                if (value) {
+                    const { icon, label } = iconMap[key as keyof Amentities];
+                    return (
+                        <div key={key} className="flex flex-col items-center">
+                            <FontAwesomeIcon icon={icon} title={label} />
+                            <span>{label}</span>
+                        </div>
+                    );
+                }
+                return null;
+            })}
+        </div>
+    );
+};
+
 const CardIdPage = ({ params }) => {
     const [house, setHouse] = useState<House | null>(null);
     const [isOpen, setIsOpen] = useState(false); // State for controlling the lightbox
     const [photoIndex, setPhotoIndex] = useState(0); // Track which photo is being displayed
 
     const { slug } = params; // Assuming slug is passed as part of the dynamic route
+
+    window.h = house
 
     // Fetch house data client-side
     useEffect(() => {
@@ -104,7 +140,7 @@ const CardIdPage = ({ params }) => {
 
                         {/* Room Details */}
                         <div className="mt-6 grid grid-cols-2 gap-4">
-                            {Object.entries(house.rooms).map(([roomName, count]) => (
+                            {house.rooms && Object.entries(house.rooms).map(([roomName, count]) => (
                                 <div key={roomName} className="flex items-center">
                                     <span className="text-lg font-semibold text-gray-700">
                                         {roomName}:
@@ -114,14 +150,23 @@ const CardIdPage = ({ params }) => {
                             ))}
                         </div>
 
+                        {/* Amentities */}
+                        {
+                            house.amentetiesRef &&
+                            <AmentitiesIcons amentities={house.amentetiesRef} />
+                        }
+
                         {/* Barrio Information */}
-                        <div className="mt-6">
-                            <h2 className="text-xl font-semibold text-gray-800">
-                                {house.barrioRef.name}
-                            </h2>
-                            <p className="text-gray-600">{house.barrioRef.description}</p>
-                            <p className="text-gray-600">Rating: {house.barrioRef.rating} / 5</p>
-                        </div>
+                        {
+                            house.barrioRef &&
+                            <div className="mt-6">
+                                <h2 className="text-xl font-semibold text-gray-800">
+                                    {house.barrioRef.name}
+                                </h2>
+                                <p className="text-gray-600">{house.barrioRef.description}</p>
+                            </div>
+                        }
+
                     </div>
                 </div>
             </div>

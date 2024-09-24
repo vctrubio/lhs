@@ -6,17 +6,18 @@ import LeftBar from "@/components/CredBar"
 import { getTotalRooms } from "@/lib/utils";
 
 export const SNF = ({ entries }: { entries: House[] }) => {
+    window.p = entries
     const [filteredHouses, setFilteredHouses] = useState<House[]>(entries);
     const [searchQuery, setSearchQuery] = useState('');
     const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
     const [sortBy, setSortBy] = useState<'precio' | 'totalArea' | 'totalRooms'>('precio');
     const [filter, setFilter] = useState<'rent' | 'buy' | 'all'>('all');
-    const allBarrios = Array.from(new Set(entries.map(entry => entry.barrioRef.name))); // Get unique barrios
+    const allBarrios = Array.from(new Set(entries.map(entry => entry.barrioRef?.name))); // Get unique barrios
     const [selectedBarrios, setSelectedBarrios] = useState<string[]>(allBarrios); // Barrios selected by default
 
     // Count houses per barrio
     const houseCountsByBarrio = allBarrios.reduce((acc, barrio) => {
-        acc[barrio] = entries.filter(entry => entry.barrioRef.name === barrio).length;
+        acc[barrio] = entries.filter(entry => entry.barrioRef?.name === barrio).length;
         return acc;
     }, {});
     // Barrios
@@ -48,7 +49,7 @@ export const SNF = ({ entries }: { entries: House[] }) => {
 
         // Filter by selected barrios
         updatedHouses = updatedHouses.filter(house =>
-            selectedBarrios.includes(house.barrioRef.name)
+            selectedBarrios.includes(house.barrioRef?.name)
         );
 
         // Sorting logic by price, total area, or total rooms

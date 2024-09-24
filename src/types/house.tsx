@@ -13,12 +13,24 @@ export interface Barrio {
 }
 
 export interface Rooms {
-  Bedroom?: number;
-  Kitchen?: number;
-  Laundry?: number;
-  Bathroom?: number;
+  Baños?: number;
+  Dormitorios?: number;
+  Salon?: number;
+  Cocina?: number;
+  Balcones?: number;
   Servicio?: number;
-  [key: string]: number | undefined; // Add this line
+  [key: string]: number | undefined;
+}
+
+export interface Amentities{
+  heating?: boolean;
+  ac?: boolean;
+  portero?: boolean;
+  trastero?: boolean;
+  elevator?: boolean;
+  laundry?: boolean;
+  parking?: boolean;
+  rooftop?: boolean;
 }
 
 export interface House {
@@ -26,9 +38,13 @@ export interface House {
   url: string;
   description: string;
   buyOrRent: boolean;
+  reformado: boolean;
   photos: Photo[];
   precio: number;
   totalArea: number;
   rooms: Rooms;
   barrioRef: Barrio;
+  amentetiesRef: Amentities;
+  ibi: number;
+  maintenanceCostmMnthly: number;
 }

@@ -75,7 +75,7 @@ const LeftBar = ({
                 checked={selectedBarrios.includes(barrio)}
                 onChange={() => handleBarrioToggle(barrio)}
               />
-              <label>{barrio} <span className="house-count">[{houseCountsByBarrio[barrio]}]</span></label>
+              <label>{barrio ? barrio : 'Sin Ubicacion'} <span className="house-count">[{houseCountsByBarrio[barrio]}]</span></label>
             </div>
           ))}
         </div>

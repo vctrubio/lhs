@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { getTotalRooms } from "@/lib/utils";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faRulerCombined, faBed, faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons'; // Import icons
+import { faRulerCombined, faBed, faMapMarkerAlt, faBath } from '@fortawesome/free-solid-svg-icons'; // Import icons
 
 function formatCurrency(value: number, rent: boolean = false): any {
     let formattedValue;
@@ -58,8 +58,9 @@ export const PropertyCard = ({ house }: { house: House }) => {
                     />
                     <div className="property-desc">
                         <DescBox text={`${house.totalArea} m²`} icon={faRulerCombined} /> {/* Square meters */}
-                        <DescBox text={String(getTotalRooms(house.rooms))} icon={faBed} /> {/* Rooms */}
-                        <DescBox text={String(house.barrioRef.name)} icon={faMapMarkerAlt} /> {/* Location */}
+                        {house.rooms.Dormitorios && <DescBox text={String(house.rooms.Dormitorios)} icon={faBed} />}
+                        {house.rooms.Baños && <DescBox text={String(house.rooms.Baños)} icon={faBath} />}
+                        <DescBox text={String(house.barrioRef?.name)} icon={faMapMarkerAlt} /> {/* Location */}
                     </div>
                 </div>
             </Link>

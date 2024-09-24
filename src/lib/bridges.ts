@@ -1,5 +1,5 @@
 import { createClient, Entry } from 'contentful';
-import { House, Barrio } from '@/types/house';
+import { House, Barrio, Amentities } from '@/types/house';
 
 
 const client = createClient({
@@ -14,47 +14,41 @@ interface BarrioRef {
     fields: Barrio; //what we are interested in
 }
 
+function transformHouseEntry(entry: Entry<any>): House {
+    const { barrioRef, amentetiesRef, ...fields } = entry.fields;
+    const { title, ...amentetiesFields } = amentetiesRef?.fields || {};
+
+    return {
+        ...fields,
+        barrioRef: barrioRef ? (barrioRef as BarrioRef).fields : null,
+        amentetiesRef: amentetiesRef ? amentetiesFields : null,
+    } as House;
+}
+
 export async function fetchHouseEntries(): Promise<House[]> {
-    console.log('init fetching');
     const entries = await client.getEntries();
 
     const filteredEntries = entries.items.filter((entry: Entry<any>) => {
         return entry.sys.contentType.sys.id === 'house';
     });
 
-    // Extract barrioRef.fields
-    return filteredEntries.map((entry: Entry<any>) => {
-        const { barrioRef, ...fields } = entry.fields;
-        return {
-            ...fields,
-            barrioRef: barrioRef ? (barrioRef as BarrioRef).fields : null,
-        } as House;
-    });
+    return filteredEntries.map(transformHouseEntry);
 }
 
 export async function fetchHouseByID(url: string): Promise<House | null> {
-    console.log(`Fetching house with URL: ${url}`);
-
     try {
         const entries = await client.getEntries();
 
-        // Filter the entries to find the one that matches the given URL
         const filteredEntry = entries.items.find((entry: Entry<any>) => {
             return entry.sys.contentType.sys.id === 'house' && entry.fields.url === url;
         });
 
         if (!filteredEntry) {
             console.log(`No house found for URL: ${url}`);
-            return null; // Return null if no house matches the given URL
+            return null;
         }
 
-        // Extract barrioRef.fields if it's available
-        const { barrioRef, ...fields } = filteredEntry.fields;
-
-        return {
-            ...fields,
-            barrioRef: barrioRef ? (barrioRef as BarrioRef).fields : null,
-        } as House;
+        return transformHouseEntry(filteredEntry);
     } catch (error) {
         console.error('Error fetching house by ID:', error);
         return null;
