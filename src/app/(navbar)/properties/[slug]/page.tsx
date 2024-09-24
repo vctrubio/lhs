@@ -60,14 +60,11 @@ const AmentitiesIcons = ({ amentities }: { amentities: Amentities }) => {
 
 const CardIdPage = ({ params }) => {
     const [house, setHouse] = useState<House | null>(null);
-    const [isOpen, setIsOpen] = useState(false); // State for controlling the lightbox
-    const [photoIndex, setPhotoIndex] = useState(0); // Track which photo is being displayed
+    const [isOpen, setIsOpen] = useState(false);
+    const [photoIndex, setPhotoIndex] = useState(0);
 
-    const { slug } = params; // Assuming slug is passed as part of the dynamic route
+    const { slug } = params;
 
-    window.h = house
-
-    // Fetch house data client-side
     useEffect(() => {
         const fetchHouse = async () => {
             const fetchedHouse = await fetchHouseByID(slug);
@@ -155,7 +152,9 @@ const CardIdPage = ({ params }) => {
                             house.amentetiesRef &&
                             <AmentitiesIcons amentities={house.amentetiesRef} />
                         }
-
+                        {
+                            house.reformado ? 'Esta reformado' : 'Para reformar'
+                        }
                         {/* Barrio Information */}
                         {
                             house.barrioRef &&

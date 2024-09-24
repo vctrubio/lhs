@@ -94,7 +94,7 @@
     padding: 12px 32px;
     background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent background */
     color: white;
-    opacity: 0;
+    opacity: 1;
     transform: translateY(20px);
     transition: transform 0.3s ease, opacity 0.3s ease;
 }

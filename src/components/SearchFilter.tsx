@@ -1,17 +1,17 @@
 'use client'
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState } from "react";
 import { House } from '@/types/house';
-import { PropertyCard } from '@/components/Property'
-import LeftBar from "@/components/CredBar"
+import { PropertyCard } from '@/components/Property';
+import LeftBar from "@/components/CredBar";
 import { getTotalRooms } from "@/lib/utils";
 
 export const SNF = ({ entries }: { entries: House[] }) => {
-    window.p = entries
     const [filteredHouses, setFilteredHouses] = useState<House[]>(entries);
     const [searchQuery, setSearchQuery] = useState('');
-    const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
+    const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('desc');
     const [sortBy, setSortBy] = useState<'precio' | 'totalArea' | 'totalRooms'>('precio');
     const [filter, setFilter] = useState<'rent' | 'buy' | 'all'>('all');
+    const [reformadoFilter, setReformadoFilter] = useState<'all' | 'reformado' | 'sinReformar'>('all'); // 3-way state for reformado filter
     const allBarrios = Array.from(new Set(entries.map(entry => entry.barrioRef?.name))); // Get unique barrios
     const [selectedBarrios, setSelectedBarrios] = useState<string[]>(allBarrios); // Barrios selected by default
 
@@ -20,27 +20,29 @@ export const SNF = ({ entries }: { entries: House[] }) => {
         acc[barrio] = entries.filter(entry => entry.barrioRef?.name === barrio).length;
         return acc;
     }, {});
-    // Barrios
 
     // Reset the filters and sorting
     const handleReset = () => {
         setSearchQuery(''); // Reset search query
-        setSortOrder('asc'); // Reset sort order
+        setSortOrder('desc'); // Reset sort order
         setSortBy('precio'); // Reset sort by price
         setFilter('all'); // Reset to show all
         setSelectedBarrios(allBarrios); // Reset barrios to all selected
+        setReformadoFilter('all'); // Reset reformado filter to "All"
     };
 
     // Filter and sort logic
     useEffect(() => {
         let updatedHouses = [...entries];
 
+        // Filter by rent/buy
         if (filter !== 'all') {
             updatedHouses = updatedHouses.filter(house =>
                 filter === 'buy' ? house.buyOrRent : !house.buyOrRent
             );
         }
 
+        // Filter by search query
         if (searchQuery) {
             updatedHouses = updatedHouses.filter(house =>
                 house.title.toLowerCase().includes(searchQuery.toLowerCase())
@@ -51,6 +53,13 @@ export const SNF = ({ entries }: { entries: House[] }) => {
         updatedHouses = updatedHouses.filter(house =>
             selectedBarrios.includes(house.barrioRef?.name)
         );
+
+        // Filter by reformado
+        if (reformadoFilter === 'reformado') {
+            updatedHouses = updatedHouses.filter(house => house.reformado === true);
+        } else if (reformadoFilter === 'sinReformar') {
+            updatedHouses = updatedHouses.filter(house => house.reformado === false);
+        }
 
         // Sorting logic by price, total area, or total rooms
         updatedHouses.sort((a, b) => {
@@ -63,7 +72,7 @@ export const SNF = ({ entries }: { entries: House[] }) => {
         });
 
         setFilteredHouses(updatedHouses);
-    }, [searchQuery, sortOrder, filter, sortBy, selectedBarrios, entries]);
+    }, [searchQuery, sortOrder, filter, sortBy, selectedBarrios, reformadoFilter, entries]);
 
     return (
         <>
@@ -81,6 +90,8 @@ export const SNF = ({ entries }: { entries: House[] }) => {
                 sortBy={sortBy}
                 sortOrder={sortOrder}
                 houseCountsByBarrio={houseCountsByBarrio} // Pass the house counts
+                reformadoFilter={reformadoFilter} // Pass reformado filter
+                setReformadoFilter={setReformadoFilter} // Function to update the reformado filter
             />
             <div className="property-container">
                 {filteredHouses.length === 0 ? (
@@ -96,9 +107,4 @@ export const SNF = ({ entries }: { entries: House[] }) => {
             </div>
         </>
     );
-}
-
-
-/**todo
- * when search is active or sort by other than price, show proeprt-desc by property-desc.highlight in css state
- */
+};
