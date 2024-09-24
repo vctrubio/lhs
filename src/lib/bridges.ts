@@ -16,11 +16,11 @@ interface BarrioRef {
 
 function transformHouseEntry(entry: Entry<any>): House {
     const { barrioRef, amentetiesRef, ...fields } = entry.fields;
-    const { title, ...amentetiesFields } = amentetiesRef?.fields || {};
+    const { title, ...amentetiesFields } = (amentetiesRef as { fields: any })?.fields || {};
 
     return {
         ...fields,
-        barrioRef: barrioRef ? (barrioRef as BarrioRef).fields : null,
+        barrioRef: barrioRef ? (barrioRef as { fields: any }).fields : null,
         amentetiesRef: amentetiesRef ? amentetiesFields : null,
     } as House;
 }
