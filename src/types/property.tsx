@@ -22,14 +22,14 @@ interface PropiedadHabitacion {
     photos: string[]; // Array of URLs or image file paths
 }
 
-interface Barrio {
+export interface Barrio {
     name: string;
     rating: number;
     description: string;
     longDescription: string;
 }
 
-interface Amentities {
+export interface Amentities {
     // title: string;
     AC: boolean;
     Heating: boolean;

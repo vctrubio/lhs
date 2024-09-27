@@ -1,5 +1,5 @@
 import React from 'react';
-import { fetchEntriesContentful, fetchHouseEntries } from '@/lib/bridges'
+import { fetchEntriesContentful} from '@/lib/bridges'
 import { House } from '@/types/house';
 import { Property } from '@/types/property';
 

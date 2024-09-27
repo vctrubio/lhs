@@ -20,7 +20,6 @@ import "@/css/airbnb.css";
 //   variable: "--font-geist-mono",
 //   weight: "100 900",
 // });
-import { ColorPalette } from "./dev/colors";
 
 import '@fortawesome/fontawesome-svg-core/styles.css'; // Import the CSS
 import { config } from '@fortawesome/fontawesome-svg-core';

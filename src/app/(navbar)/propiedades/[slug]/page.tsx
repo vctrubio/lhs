@@ -9,8 +9,7 @@ import Lightbox from 'yet-another-react-lightbox';
 import 'yet-another-react-lightbox/styles.css'; // Import the lightbox styles
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSnowflake, faFire, faConciergeBell, faBox, faElevator, faCouch, faCar, faSun, faDraftingCompass, faRulerCombined } from '@fortawesome/free-solid-svg-icons';
-import { Amentities } from '@/types/house';
-import { Property } from '@/types/property';
+import { Property, Amentities } from '@/types/property';
 import { faBuilding } from '@fortawesome/free-regular-svg-icons';
 
 /* MetaData for SEO */

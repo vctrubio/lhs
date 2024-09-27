@@ -1,17 +1,9 @@
 import Banner from "@/components/Banner";
 import NavBar from "@/components/NavBar";
 import TigerEye from "@/components/TigerEye"
+import {Logo} from "@/lib/utils";
 
 
-export const Logo = () => {
-  return (
-    <div id="logo">
-      <div>L</div>
-      <div>H</div>
-      <div>S</div>
-    </div>
-  )
-}
 
 const Features = () => {
   return (

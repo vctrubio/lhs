@@ -1,6 +1,5 @@
 import { createClient, Entry } from 'contentful';
-import { House, Barrio, Amentities } from '@/types/house';
-import { Property } from '@/types/property';
+import { Property, Barrio } from '@/types/property';
 import { ImageToUrl, extractImageUrls } from './utils';
 
 const client = createClient({
@@ -77,12 +76,13 @@ function parsePropertyFromContentful({ entry }): Property {
 }
 
 function parseBarrioFromContentful({ entry }): Barrio {
-    const { name, rating, description, location } = entry.fields;
+    const { name, rating, description, location, longDescription } = entry.fields;
 
     return {
         name: name,
         rating: rating,
         description: description,
+        longDescription: longDescription,
         location: location
     } as Barrio;
 }

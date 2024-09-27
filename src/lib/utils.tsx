@@ -1,5 +1,15 @@
 import { Rooms } from '@/types/house';
 
+export const Logo = () => {
+    return (
+      <div id="logo">
+        <div>L</div>
+        <div>H</div>
+        <div>S</div>
+      </div>
+    )
+  }
+
 export const getTotalRooms = (rooms: Rooms) => {
     if (!rooms) {
         return 0;
@@ -9,6 +19,7 @@ export const getTotalRooms = (rooms: Rooms) => {
         .filter(([key]) => key === 'Baños' || key === 'Dormitorios')
         .reduce((total, [, count]) => total + (count || 0), 0);
 };
+
 
 export function ImageToUrl(entry: any): string {
     const url = entry.fields.file.url.startsWith('http') ? entry.fields.file.url : `https:${entry.fields.file.url}`;

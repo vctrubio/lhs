@@ -206,8 +206,8 @@
 }
 
 .reformado-button {
-    font-size: 13px !important;
-    border: 1px solid var(--color-beigh-darkish);
+    font-size: 14px !important;
+    border: 1px solid transparent;
     background-color: var(--color-beigh-darkish);
     color: white;
     cursor: pointer;
@@ -228,14 +228,14 @@
 }
 
 .reformado-button.active {
-    background-color: var(--color-blue);
+    background-color: var(--color-sad);
     /* Active state color */
     color: white;
-    border-color: var(--color-blue);
+    border-color: var(--color-sad);
 }
 
 .reformado-button:hover {
-    background-color: var(--color-blue-light);
+    background-color: var(--color-sad);
     /* Hover state */
     color: white;
 }
@@ -245,14 +245,13 @@
     padding: 12px 20px;
     background-color: var(--color-beigh-darkish);
     color: white;
-    border: 1px solid var(--color-beigh-darkish);
     cursor: pointer;
     border-radius: 32px;
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .reset-button:hover {
-    background-color: var(--color-blue);
+    background-color: var(--color-sad);
     transform: scale(1.05);
 }
 

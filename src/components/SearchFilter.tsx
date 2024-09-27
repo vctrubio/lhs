@@ -4,8 +4,8 @@ import { House } from '@/types/house';
 import { PropertyCard } from '@/components/Property';
 import LeftBar from "@/components/CredBar";
 import { getTotalRooms } from "@/lib/utils";
-import { Property } from "@/types/property";
-import { Logo } from "@/app/page";
+import { getRooms, Property } from "@/types/property";
+import { Logo } from "@/lib/utils";
 
 export const SNF = ({ entries }: { entries: Property[] }) => {
     const [filteredHouses, setFilteredHouses] = useState<Property[]>(entries);
@@ -80,9 +80,10 @@ export const SNF = ({ entries }: { entries: Property[] }) => {
 
         // Sorting logic by price, total area, or total rooms
         updatedHouses.sort((a, b) => {
+            //** todo sort get total rooms form charRef */
             if (sortBy === 'totalRooms') {
-                const totalRoomsA = getTotalRooms(a.rooms);
-                const totalRoomsB = getTotalRooms(b.rooms);
+                const totalRoomsA = 1;
+                const totalRoomsB = 2;
                 return sortOrder === 'asc' ? totalRoomsA - totalRoomsB : totalRoomsB - totalRoomsA;
             }
             return sortOrder === 'asc' ? a[sortBy] - b[sortBy] : b[sortBy] - a[sortBy];
