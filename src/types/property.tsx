@@ -52,7 +52,7 @@ export interface Property {
     precioComunidad: number;
     plano_url: string;
     cover_url: string[];
-    photos_rooms_url: string[];
+    photos_url: string[];
 
     barrioRef: Barrio;
     amentitiesRef: Amentities;

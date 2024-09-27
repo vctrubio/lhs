@@ -8,9 +8,10 @@ import Head from 'next/head';
 import Lightbox from 'yet-another-react-lightbox';
 import 'yet-another-react-lightbox/styles.css'; // Import the lightbox styles
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSnowflake, faFire, faConciergeBell, faBox, faElevator, faTshirt, faCouch, faCar, faSun } from '@fortawesome/free-solid-svg-icons';
+import { faSnowflake, faFire, faConciergeBell, faBox, faElevator, faCouch, faCar, faSun, faDraftingCompass, faRulerCombined } from '@fortawesome/free-solid-svg-icons';
 import { Amentities } from '@/types/house';
 import { Property } from '@/types/property';
+import { faBuilding } from '@fortawesome/free-regular-svg-icons';
 
 /* MetaData for SEO */
 const MetaData = ({ house }) => (
@@ -28,9 +29,7 @@ const MetaData = ({ house }) => (
     </Head>
 );
 
-
 const AmentitiesIcons = ({ amentities }: { amentities: Amentities }) => {
-
     const iconMap = {
         ac: { icon: faSnowflake, label: 'AC' },
         heating: { icon: faFire, label: 'Calefacion' },
@@ -62,6 +61,7 @@ const CardIdPage = ({ params }) => {
     const [house, setHouse] = useState<Property | null>(null);
     const [isOpen, setIsOpen] = useState(false);
     const [photoIndex, setPhotoIndex] = useState(0);
+    const [isPlanoOpen, setIsPlanoOpen] = useState(false);
 
     const { slug } = params;
 
@@ -77,6 +77,7 @@ const CardIdPage = ({ params }) => {
         return <div>Not found... Loading...</div>;
     }
 
+    console.log("🚀 ~ CardIdPage ~ house:", house)
     const images = house.cover_url.map(photo => ({
         src: photo
     }));
@@ -84,59 +85,95 @@ const CardIdPage = ({ params }) => {
     return (
         <>
             <MetaData house={house} /> {/* Meta tags for SEO */}
-            <div className="max-w-8xl mx-auto mt-2">
-                <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+            <div className="page-id">
+                <div className={`photo-collage ${house.photos_url.length < 5 ? 'few-photos' : ''}`}>
+                    {house.photos_url.map((photo, idx) => (
+                        <div
+                            key={idx}
+                            className={`photo-wrapper photo-${idx}`}
+                            onClick={() => {
+                                setPhotoIndex(idx);
+                                setIsOpen(true);
+                            }} // Open lightbox on click
+                        >
+                            <Image
+                                src={photo}
+                                alt={house.title}
+                                layout="fill"
+                                objectFit="cover"
+                                loading="lazy"
+                                quality={100}
+                            />
+                        </div>
+                    ))}
+                </div>
 
-                    {/* Photo Collage */}
-                    <div className="photo-collage">
-                        {house.cover_url.map((photo, idx) => (
-                            <div
-                                key={idx}
-                                className={`photo-wrapper photo-${idx}`}
-                                onClick={() => {
-                                    setPhotoIndex(idx);
-                                    setIsOpen(true);
-                                }} // Open lightbox on click
-                            >
-                                <Image
-                                    src={photo}
-                                    alt={house.title}
-                                    layout="fill"
-                                    objectFit="cover"
-                                    loading="lazy"
-                                    quality={100}
-                                />
+                {isOpen && (
+                    <Lightbox
+                        open={isOpen}
+                        close={() => setIsOpen(false)}
+                        slides={images}
+                        index={photoIndex} // Start from the clicked image
+                    />
+                )}
+
+                {/* Property Info */}
+                <div className="p-6">
+                    <div className='flex justify-between'>
+                        <h1 className="text-3xl font-bold text-gray-800">{house.title}</h1>
+                        <div className='flex items-center gap-2'>
+                            <div onClick={() => setIsPlanoOpen(true)} className="cursor-pointer flex items-center">
+                                <FontAwesomeIcon icon={faBuilding} />
                             </div>
-                        ))}
+                            {house.plano_url && (
+                                <Lightbox
+                                    open={isPlanoOpen}
+                                    close={() => setIsPlanoOpen(false)}
+                                    slides={[{ src: house.plano_url }]}
+
+                                />
+                            )}
+                            <div className='flex gap-2 items-center'>
+                                {house.charRef.metrosCuadradros} M2
+                            </div>
+                        </div>
+                    </div>
+                    <div className='property-description'>
+                        {house.description}
                     </div>
 
-                    {/* Lightbox */}
-                    {isOpen && (
-                        <Lightbox
-                            open={isOpen}
-                            close={() => setIsOpen(false)}
-                            slides={images}
-                            index={photoIndex} // Start from the clicked image
-                        />
-                    )}
+                    {/* Property Price and Area */}
+                    <div className='pro-flex'>
+                        <div className="property-prices">
+                            <div>
+                                <span>{house.charRef.metrosCuadradros} m<sup>2</sup></span>
+                            </div>
+                            <div>
+                                {
+                                    house.precioIbi !== 0 ? (
+                                        <div>
+                                            IBI: ${house.precioIbi.toLocaleString()}
+                                        </div>
 
-                    {/* Property Info */}
-                    <div className="p-6">
-                        <h1 className="text-3xl font-bold text-gray-800">{house.title}</h1>
-                        <p className="text-gray-600 mt-4">{house.description}</p>
-
-                        {/* Property Price and Area */}
-                        <div className="mt-4">
-                            <span className="text-2xl font-semibold text-indigo-600">
-                                ${house.precio.toLocaleString()}
-                            </span>
-                            <span className="ml-2 text-sm text-gray-600">
-                                ({house.charRef.metrosCuadradros} sqm)
+                                    ) : <div>Precio ibis...</div>
+                                }
+                            </div>
+                            <div>
+                                {
+                                    house.precioComunidad !== 0 ? (
+                                        <div>
+                                            Comunidad: ${house.precioComunidad.toLocaleString()}
+                                        </div>
+                                    ) : <div>Precio comunidad...</div>
+                                }
+                            </div>
+                            <span>
+                                {
+                                    house.reformado ? 'Reformado' : 'Para reformar'
+                                }
                             </span>
                         </div>
-
-                        {/* Room Details */}
-                        <div className="mt-6 grid grid-cols-2 gap-4">
+                        <div className="property-characteristics">
                             {house.charRef && (
                                 <>
                                     {house.charRef.tipoDePropiedad && (
@@ -167,26 +204,25 @@ const CardIdPage = ({ params }) => {
                             )}
                         </div>
 
-                        {
-                            house.amentitiesRef &&
-                            <AmentitiesIcons amentities={house.amentitiesRef} />
-                        }
-
-                        {
-                            house.reformado ? 'Esta reformado' : 'Para reformar'
-                        }
-
-                        {
-                            house.barrioRef &&
-                            <div className="mt-6">
-                                <h2 className="text-xl font-semibold text-gray-800">
-                                    {house.barrioRef.name}
-                                </h2>
-                                <p className="text-gray-600">{house.barrioRef.description}</p>
-                            </div>
-                        }
+                        <div>
+                            {
+                                house.amentitiesRef &&
+                                <AmentitiesIcons amentities={house.amentitiesRef} />
+                            }
+                        </div>
 
                     </div>
+
+                    {
+                        house.barrioRef &&
+                        <div className="flex justify-end p-4">
+                            <h2 className="text-xl font-semibold text-gray-800">
+                                {house.barrioRef.name}
+                            </h2>
+                            <p className="text-gray-600">{house.barrioRef.description}</p>
+                        </div>
+                    }
+
                 </div>
             </div>
         </>

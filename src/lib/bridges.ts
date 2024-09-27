@@ -65,8 +65,12 @@ function parsePropertyFromContentful({ entry }): Property {
             description: h.fields.description,
             photos: h.fields.photos ? h.fields.photos.map((photo: any) => photo.fields.file.url) : []
         })) : null,
-        
-        photos_rooms_url: habitacionesPaginas ? getRoomPhotoUrl(habitacionesPaginas) : null,
+
+        photos_url: [
+            ...(habitacionesPaginas ? getRoomPhotoUrl(habitacionesPaginas) : []),
+            ...(photos ? extractImageUrls(photos) : [])
+        ],
+
         updatedAt: updatedAt,
         canva_id: null,
     } as Property;

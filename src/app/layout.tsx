@@ -7,6 +7,7 @@ import "@/css/lhs.css";
 import "@/css/collage.css";
 import "@/css/test.css";
 import "@/css/property-card.css";
+import "@/css/airbnb.css";
 
 // import localFont from "next/font/local";
 // const geistSans = localFont({
