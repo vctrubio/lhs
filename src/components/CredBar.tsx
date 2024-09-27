@@ -82,39 +82,35 @@ const LeftBar = ({
           ))}
         </div>
       </div>
-      <div>
-        <label>Reformado?</label>
-        <div className='flex gap-5'>
-          <label>
-            <input
-              type="radio"
-              value="all"
-              checked={reformadoFilter === 'all'}
-              onChange={() => setReformadoFilter('all')}
-            />
-            All
-          </label>
-          <label>
-            <input
-              type="radio"
-              value="reformado"
-              checked={reformadoFilter === 'reformado'}
-              onChange={() => setReformadoFilter('reformado')}
-            />
-            Yes
-          </label>
-          <label>
-            <input
-              type="radio"
-              value="sinReformar"
-              checked={reformadoFilter === 'sinReformar'}
-              onChange={() => setReformadoFilter('sinReformar')}
-            />
-            No
-          </label>
+
+      <div className='buttons-botton'>
+
+        <div className="reformado-toggle">
+          <div className="reformado-buttons">
+            <button
+              className={`reformado-button reformado-yes ${reformadoFilter === 'reformado' ? 'active' : ''}`}
+              onClick={() => setReformadoFilter('reformado')}
+            >
+              Si
+            </button>
+            <button
+              className={`reformado-button reformado-all ${reformadoFilter === 'all' ? 'active' : ''}`}
+              onClick={() => setReformadoFilter('all')}
+            >
+              Reformado?
+            </button>
+            <button
+              className={`reformado-button reformado-no ${reformadoFilter === 'sinReformar' ? 'active' : ''}`}
+              onClick={() => setReformadoFilter('sinReformar')}
+            >
+              No
+            </button>
+          </div>
         </div>
+
+        <button onClick={handleReset} className="reset-button">Reset</button>
       </div>
-      <button onClick={handleReset}>Reset</button>
+
     </div>
   );
 };

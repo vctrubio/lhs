@@ -26,11 +26,14 @@
     grid-row: span 2;
 }
 
-.photo-wrapper.photo-3 {
+.photo-wrapper.photo-2 {
     grid-column: span 1;
     grid-row: span 2;
 }
-
+.photo-wrapper.photo-3 {
+    grid-column: span 1;
+    grid-row: span 1;
+}
 
 /* Ensure images fill space in their cell */
 .photo-wrapper img {

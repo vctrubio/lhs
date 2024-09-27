@@ -121,7 +121,7 @@ const CardIdPage = ({ params }) => {
                 <div className="p-6">
                     <div className='flex justify-between'>
                         <h1 className="text-3xl font-bold text-gray-800">{house.title}</h1>
-                        <div className='flex items-center gap-2'>
+                        <div className='flex items-center gap-4'>
                             <div onClick={() => setIsPlanoOpen(true)} className="cursor-pointer flex items-center">
                                 <FontAwesomeIcon icon={faBuilding} />
                             </div>
@@ -134,7 +134,7 @@ const CardIdPage = ({ params }) => {
                                 />
                             )}
                             <div className='flex gap-2 items-center'>
-                                {house.charRef.metrosCuadradros} M2
+                            <span>{house.charRef.metrosCuadradros} m<sup>2</sup></span>
                             </div>
                         </div>
                     </div>
@@ -146,7 +146,9 @@ const CardIdPage = ({ params }) => {
                     <div className='pro-flex'>
                         <div className="property-prices">
                             <div>
-                                <span>{house.charRef.metrosCuadradros} m<sup>2</sup></span>
+                                <span className="text-2xl font-semibold text-gray-800">
+                                    {house.precio.toLocaleString()} <span>€</span>
+                                </span>
                             </div>
                             <div>
                                 {

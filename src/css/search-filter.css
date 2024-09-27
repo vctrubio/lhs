@@ -68,23 +68,12 @@
 
 /* Button styling */
 .leftie button {
-    background: linear-gradient(45deg, #ff6f61, #ff4a3d);
-    /* Gradient button */
-    color: white;
     padding: 14px;
     font-size: 16px;
-    border-radius: 10px;
-    /* Rounded button */
     cursor: pointer;
-    border: none;
     transition: background 0.3s ease, transform 0.2s ease;
 }
 
-.leftie button:hover {
-    background: linear-gradient(45deg, #ff4a3d, #ff6f61);
-    transform: scale(1.05);
-    /* Slight pop on hover */
-}
 
 /* For the sidebar checkboxes */
 .leftie .barrio-list {
@@ -206,6 +195,74 @@
     font-weight: 400;
 }
 
+.reformado-toggle {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+}
+
+.reformado-buttons {
+    display: flex;
+}
+
+.reformado-button {
+    font-size: 13px !important;
+    border: 1px solid var(--color-beigh-darkish);
+    background-color: var(--color-beigh-darkish);
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Remove border on the middle button */
+.reformado-button:not(:first-child):not(:last-child) {
+    border-radius: 0;
+}
+
+.reformado-yes {
+    border-radius: 9999px 0 0 9999px;
+}
+
+.reformado-no {
+    border-radius: 0 9999px 9999px 0;
+}
+
+.reformado-button.active {
+    background-color: var(--color-blue);
+    /* Active state color */
+    color: white;
+    border-color: var(--color-blue);
+}
+
+.reformado-button:hover {
+    background-color: var(--color-blue-light);
+    /* Hover state */
+    color: white;
+}
+
+.reset-button {
+    margin-top: 16px;
+    padding: 12px 20px;
+    background-color: var(--color-beigh-darkish);
+    color: white;
+    border: 1px solid var(--color-beigh-darkish);
+    cursor: pointer;
+    border-radius: 32px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.reset-button:hover {
+    background-color: var(--color-blue);
+    transform: scale(1.05);
+}
+
+
+.buttons-botton {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
 
 @keyframes slideInFromLeft {
     0% {
