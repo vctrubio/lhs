@@ -48,3 +48,5 @@ export interface House {
   ibi: number;
   maintenanceCostmMnthly: number;
 }
+
+

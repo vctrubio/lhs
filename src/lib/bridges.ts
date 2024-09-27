@@ -1,5 +1,6 @@
 import { createClient, Entry } from 'contentful';
 import { House, Barrio, Amentities } from '@/types/house';
+import { Property } from '@/types/property';
 
 
 const client = createClient({
@@ -53,4 +54,80 @@ export async function fetchHouseByID(url: string): Promise<House | null> {
         console.error('Error fetching house by ID:', error);
         return null;
     }
+}
+
+
+function parsePropertyFromContentful({ entry }): Property {
+
+    function ImageToUrl(entry: any): string {
+        const url = entry.fields.file.url.startsWith('http') ? entry.fields.file.url : `https:${entry.fields.file.url}`;
+        return url;
+    }
+
+    function extractImageUrls(entries: any[]): string[] {
+        return entries.map(entry => ImageToUrl(entry));
+    }
+
+    function getRoomPhotoUrl(entries: any[]): string[] {
+        const urls = entries.map(entry => {
+            const photos = entry.fields.photos
+            const it = photos ? extractImageUrls(photos) : []
+            return it
+        }
+        )
+        return urls.flat()
+    }
+
+
+    const updatedAt = entry.sys.updatedAt
+    const { barrioRef, amentetiesRef, characteristics, habitacionesPaginas, ibi, maintenanceCostmMnthly, photos, plano, title, description, buyOrRent, reformado, precio } = entry.fields;
+
+    return {
+        title: title,
+        description: description,
+        buyOrRent: buyOrRent,
+        reformado: reformado,
+        precio: precio,
+        precioIbi: ibi ? ibi : 0,
+        precioComunidad: maintenanceCostmMnthly ? maintenanceCostmMnthly : 0,
+        plano_url: plano ? ImageToUrl(plano) : null,
+        cover_url: photos ? extractImageUrls(photos) : null,
+        barrioRef: barrioRef ? barrioRef.fields : null,
+        amentitiesRef: amentetiesRef ? amentetiesRef.fields : null,
+        charRef: characteristics ? characteristics.fields : null,
+        roomsRef: habitacionesPaginas ? habitacionesPaginas.map(h => h.fields) : null,
+        photos_rooms_url: habitacionesPaginas ? getRoomPhotoUrl(habitacionesPaginas) : null,
+        updatedAt: updatedAt,
+        canva_id: null,
+    } as Property;
+}
+
+function parseBarrioFromContentful({ entry }): Barrio {
+    const { name, rating, description, location } = entry.fields;
+
+    return {
+        name: name,
+        rating: rating,
+        description: description,
+        location: location
+    } as Barrio;
+}
+
+export async function fetchEntriesContentful(): Promise<{ properties: Property[], barrios: Barrio[] }> {
+    const entries = await client.getEntries();
+
+    const barrios: Barrio[] = [];
+    const properties: Property[] = [];
+
+    entries.items.map((entry: Entry<any>) => {
+        if (entry.sys.contentType.sys.id === 'barrio') {
+            barrios.push(parseBarrioFromContentful({ entry }))
+        }
+        if (entry.sys.contentType.sys.id === 'propiedad') {
+            properties.push(parsePropertyFromContentful({ entry }))
+        }
+    });
+
+    return { properties, barrios }
+
 }
