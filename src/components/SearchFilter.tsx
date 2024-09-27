@@ -4,9 +4,10 @@ import { House } from '@/types/house';
 import { PropertyCard } from '@/components/Property';
 import LeftBar from "@/components/CredBar";
 import { getTotalRooms } from "@/lib/utils";
+import { Property } from "@/types/property";
 
-export const SNF = ({ entries }: { entries: House[] }) => {
-    const [filteredHouses, setFilteredHouses] = useState<House[]>(entries);
+export const SNF = ({ entries }: { entries: Property[] }) => {
+    const [filteredHouses, setFilteredHouses] = useState<Property[]>(entries);
     const [searchQuery, setSearchQuery] = useState('');
     const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('desc');
     const [sortBy, setSortBy] = useState<'precio' | 'totalArea' | 'totalRooms'>('precio');
@@ -115,8 +116,8 @@ export const SNF = ({ entries }: { entries: House[] }) => {
                         <button onClick={handleReset}>Reset Filters</button>
                     </div>
                 ) : (
-                    filteredHouses.map((entry: House) => (
-                        <PropertyCard house={entry} key={entry.url} cssStateHover={cssStateHover}/>
+                    filteredHouses.map((entry: Property) => (
+                        <PropertyCard house={entry} key={entry.title} cssStateHover={cssStateHover}/>
                     ))
                 )}
             </div>

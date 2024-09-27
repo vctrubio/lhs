@@ -4,6 +4,7 @@ import Link from "next/link";
 import { getTotalRooms } from "@/lib/utils";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRulerCombined, faBed, faMapMarkerAlt, faBath } from '@fortawesome/free-solid-svg-icons'; // Import icons
+import { Property } from "@/types/property";
 
 function formatCurrency(value: number, rent: boolean = false): any {
     let formattedValue;
@@ -35,14 +36,17 @@ const DescBox: React.FC<DescBoxProps> = ({ text, icon }) => {
     );
 };
 
-export const PropertyCard = ({ house, cssStateHover }: { house: House, cssStateHover: boolean }) => {
-    const coverPhoto = house.photos[0].fields.file.url.startsWith('http')
-        ? house.photos[0].fields.file.url
-        : `https:${house.photos[0].fields.file.url}`;
-
+export const PropertyCard = ({ house, cssStateHover }: { house: Property, cssStateHover: boolean }) => {
+    console.log("🚀 ~ PropertyCard ~ house:", house)
+    const coverPhoto = house ? house.cover_url[0] : '/images/placeholder.jpg';
+    
+    const area = house.charRef.metrosCuadradros ? house.charRef.metrosCuadradros : 'N/A';
+    const bedrooms = house.charRef.dormitorios ? house.charRef.dormitorios : 'N/A';
+    const bathrooms = house.charRef.banos ? house.charRef.banos : 'N/A';
+    
     return (
         <div className="property" css-state={cssStateHover ? 'on' : ''}>
-            <Link href={`/properties/${house.url}`}>
+            <Link href={`/propiedades/${house.url}`}>
                 <div className="property-title">
                     <h1>{house.title}</h1>
                     <h2>{formatCurrency(house.precio, house.buyOrRent)}</h2>
@@ -56,12 +60,12 @@ export const PropertyCard = ({ house, cssStateHover }: { house: House, cssStateH
                         quality={100}
                         priority
                     />
-                    <div className="property-desc">
-                        <DescBox text={`${house.totalArea} m²`} icon={faRulerCombined} /> {/* Square meters */}
-                        {house.rooms.Dormitorios && <DescBox text={String(house.rooms.Dormitorios)} icon={faBed} />}
-                        {house.rooms.Baños && <DescBox text={String(house.rooms.Baños)} icon={faBath} />}
-                        <DescBox text={String(house.barrioRef?.name)} icon={faMapMarkerAlt} /> {/* Location */}
-                    </div>
+                </div>
+                <div className="property-desc">
+                    <DescBox text={`${area} m²`} icon={faRulerCombined} /> {/* Square meters */}
+                    {bedrooms && <DescBox text={String(bedrooms)} icon={faBed} />}
+                    {bathrooms && <DescBox text={String(bathrooms)} icon={faBath} />}
+                    <DescBox text={String(house.barrioRef?.name)} icon={faMapMarkerAlt} /> {/* Location */}
                 </div>
             </Link>
         </div >

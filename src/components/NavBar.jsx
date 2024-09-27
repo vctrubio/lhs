@@ -4,8 +4,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWhatsapp, faInstagram } from '@fortawesome/free-brands-svg-icons';
 import { faPaperPlane } from '@fortawesome/free-regular-svg-icons';
 const items = [
-    "events",
-    "properties",
+    "eventos",
+    "propiedades",
     "lifestyle",
 ]
 

@@ -38,11 +38,8 @@
     margin: 14px;
     position: relative;
     opacity: 1;
-    /* Default visible state */
     transform: translateY(0);
-    /* Default position */
     transition: opacity 0.5s ease, transform 0.5s ease;
-    /* Smooth opacity and movement */
 }
 
 /* Hover effect: subtle tilt and shadow */
@@ -53,7 +50,6 @@
 
 .property-desc.highlight {
     opacity: 1;
-    /* Make it fully visible */
     transform: translateY(0);
 }
 
@@ -61,9 +57,7 @@
 .property.fade-out {
     opacity: 0;
     transform: translateY(20px);
-    /* Move down slightly when disappearing */
     pointer-events: none;
-    /* Disable interactions while fading out */
 }
 
 
@@ -86,7 +80,9 @@
     width: 100%;
     justify-content: space-around;
     padding: 18px 32px;
+    margin-bottom: 12px;
     background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 0 0 12px 12px;
     color: white;
     opacity: 0;
     transform: translateY(20px);

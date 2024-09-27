@@ -7,12 +7,12 @@ interface Photo {
 }
 
 interface PropiedadCharacteristics {
-    title: string;
+    // title: string;
     tipoDePropiedad: string;
     dormitorios: number;
     banos: number;
     balcones: number;
-    metrosCuadrados: number; //totalArea
+    metrosCuadradros: number; //totalArea
 }
 
 interface PropiedadHabitacion {
@@ -30,7 +30,7 @@ interface Barrio {
 }
 
 interface Amentities {
-    title: string;
+    // title: string;
     AC: boolean;
     Heating: boolean;
     Rooftop: boolean;
@@ -38,20 +38,18 @@ interface Amentities {
     Portero: boolean;
     Trastero: boolean;
     Elevator: boolean;
-    OpenKitchen: boolean;
-    Laundry: boolean;
     Parking: boolean;
 }
 
 export interface Property {
     title: string;
+    url: string; 
     description: string;
     buyOrRent: boolean;
     reformado: boolean;
     precio: number;
     precioIbi: number;
     precioComunidad: number;
-    
     plano_url: string;
     cover_url: string[];
     photos_rooms_url: string[];

@@ -1,7 +1,9 @@
 import React from 'react';
-import { fetchHouseEntries } from '@/lib/bridges'
+import { fetchEntriesContentful, fetchHouseEntries } from '@/lib/bridges'
 import { House } from '@/types/house';
-import {SNF} from '@/components/SearchFilter'
+import { Property } from '@/types/property';
+
+import { SNF } from '@/components/SearchFilter'
 
 const Objective = () => {
     return (
@@ -27,12 +29,11 @@ const Objective = () => {
 }
 
 const HomePage = async () => {
-    const entries: House[] = await fetchHouseEntries();
-    console.log("🚀 ~ HomePage ~ entries:", entries)
+    const { properties }: { properties: Property[] } = await fetchEntriesContentful();
 
     return (
         <>
-            <SNF entries={entries}/>
+            <SNF entries={properties} />
         </>
     )
 }
