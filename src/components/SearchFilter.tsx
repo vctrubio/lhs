@@ -5,6 +5,7 @@ import { PropertyCard } from '@/components/Property';
 import LeftBar from "@/components/CredBar";
 import { getTotalRooms } from "@/lib/utils";
 import { Property } from "@/types/property";
+import { Logo } from "@/app/page";
 
 export const SNF = ({ entries }: { entries: Property[] }) => {
     const [filteredHouses, setFilteredHouses] = useState<Property[]>(entries);
@@ -109,15 +110,16 @@ export const SNF = ({ entries }: { entries: Property[] }) => {
                 reformadoFilter={reformadoFilter} // Pass reformado filter
                 setReformadoFilter={setReformadoFilter} // Function to update the reformado filter
             />
-            <div className="property-container" last-man-standing={cssUniqueBoy? 'on' : ''}>
+            <div className="property-container" last-man-standing={cssUniqueBoy ? 'on' : ''}>
                 {filteredHouses.length === 0 ? (
-                    <div className="no-results">
-                        <p>No results found.</p>
-                        <button onClick={handleReset}>Reset Filters</button>
+                    <div className="flex justify-center flex-col m-auto">
+                        <Logo />
+                        <p className="text-center">No encontramos lo que buscas</p>
+                        <button onClick={handleReset} className="border border-white rounded-2xl">Reset Filters</button>
                     </div>
                 ) : (
                     filteredHouses.map((entry: Property) => (
-                        <PropertyCard house={entry} key={entry.title} cssStateHover={cssStateHover}/>
+                        <PropertyCard house={entry} key={entry.title} cssStateHover={cssStateHover} />
                     ))
                 )}
             </div>

@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSortAmountUpAlt, faSortAmountDownAlt } from '@fortawesome/free-solid-svg-icons';
+import { faSortAmountUpAlt, faSortAmountDownAlt, faSearch } from '@fortawesome/free-solid-svg-icons';
 
 const LeftBar = ({
   setSearchQuery,
@@ -32,28 +32,28 @@ const LeftBar = ({
       <div>
         <input
           type="text"
-          placeholder="Search..."
+          placeholder="Buscar..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
         />
       </div>
       <div>
-        <label>Filter by:</label>
+        <label>Filtrar:</label>
         <select value={filter} onChange={(e) => setFilter(e.target.value)}>
-          <option value="all">All</option>
-          <option value="rent">Rent</option>
-          <option value="buy">Buy</option>
+          <option value="all">Todo</option>
+          <option value="rent">Alquilar</option>
+          <option value="buy">Comprar</option>
         </select>
       </div>
 
       {/* Sort by and Sort order in one row */}
       <div>
-        <label>Sort by:</label>
+        <label>Ordenar:</label>
         <div className="sort-row">
           <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
-            <option value="precio">Price</option>
-            <option value="totalArea">Area</option>
-            <option value="totalRooms">Rooms</option>
+            <option value="precio">Precio</option>
+            <option value="totalArea">Metros</option>
+            <option value="totalRooms">Habitaciones</option>
           </select>
 
           {/* Toggle sort order using Font Awesome icons */}
@@ -68,7 +68,7 @@ const LeftBar = ({
       </div>
 
       <div>
-        <label>Filter by Barrio:</label>
+        <label>Barrios:</label>
         <div className="barrio-list">
           {allBarrios.map((barrio) => (
             <div key={barrio} className="flex items-center barrio-item">
@@ -83,38 +83,38 @@ const LeftBar = ({
         </div>
       </div>
       <div>
-            <label>Reformado?</label>
-            <div className='flex gap-5'>
-                <label>
-                    <input
-                        type="radio"
-                        value="all"
-                        checked={reformadoFilter === 'all'}
-                        onChange={() => setReformadoFilter('all')}
-                    />
-                    All
-                </label>
-                <label>
-                    <input
-                        type="radio"
-                        value="reformado"
-                        checked={reformadoFilter === 'reformado'}
-                        onChange={() => setReformadoFilter('reformado')}
-                    />
-                    Yes
-                </label>
-                <label>
-                    <input
-                        type="radio"
-                        value="sinReformar"
-                        checked={reformadoFilter === 'sinReformar'}
-                        onChange={() => setReformadoFilter('sinReformar')}
-                    />
-                    No
-                </label>
-            </div>
+        <label>Reformado?</label>
+        <div className='flex gap-5'>
+          <label>
+            <input
+              type="radio"
+              value="all"
+              checked={reformadoFilter === 'all'}
+              onChange={() => setReformadoFilter('all')}
+            />
+            All
+          </label>
+          <label>
+            <input
+              type="radio"
+              value="reformado"
+              checked={reformadoFilter === 'reformado'}
+              onChange={() => setReformadoFilter('reformado')}
+            />
+            Yes
+          </label>
+          <label>
+            <input
+              type="radio"
+              value="sinReformar"
+              checked={reformadoFilter === 'sinReformar'}
+              onChange={() => setReformadoFilter('sinReformar')}
+            />
+            No
+          </label>
         </div>
-      <button onClick={handleReset}>Reset Filters</button>
+      </div>
+      <button onClick={handleReset}>Reset</button>
     </div>
   );
 };

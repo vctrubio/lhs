@@ -3,7 +3,7 @@ import NavBar from "@/components/NavBar";
 import TigerEye from "@/components/TigerEye"
 
 
-const Logo = () => {
+export const Logo = () => {
   return (
     <div id="logo">
       <div>L</div>

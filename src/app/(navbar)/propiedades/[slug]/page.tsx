@@ -68,9 +68,6 @@ const CardIdPage = ({ params }) => {
     useEffect(() => {
         const fetchHouse = async () => {
             const fetchedHouse = await fetchPropertyByID(slug);
-            if (!fetchedHouse) {
-                return;
-            }
             setHouse(fetchedHouse);
         };
         fetchHouse();
@@ -83,8 +80,6 @@ const CardIdPage = ({ params }) => {
     const images = house.cover_url.map(photo => ({
         src: photo
     }));
-
-
 
     return (
         <>
