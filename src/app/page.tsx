@@ -1,7 +1,7 @@
 import Banner from "@/components/Banner";
 import NavBar from "@/components/NavBar";
 import TigerEye from "@/components/TigerEye"
-import {Logo} from "@/lib/utils";
+import { Logo } from "@/lib/utils";
 
 
 const Features = () => {
@@ -29,12 +29,14 @@ const LandingPage = () => {
 export default function MainPage() {
   return (
     <div className="main">
-      {/* <div id="landing" className="flex justify-center w-full">
+      <div id="landing" className="flex justify-center w-full">
         <LandingPage />
-      </div> */}
+      </div>
       <div>
-        <NavBar flag={null}/>
-        <Banner />
+        <NavBar flag={null} />
+        <div className="banner-container">
+          <Banner />
+        </div>
       </div>
     </div>
   );

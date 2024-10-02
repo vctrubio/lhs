@@ -1,6 +1,5 @@
 import React from 'react';
 import { fetchEntriesContentful} from '@/lib/bridges'
-import { House } from '@/types/house';
 import { Property } from '@/types/property';
 
 import { SNF } from '@/components/SearchFilter'
