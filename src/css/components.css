@@ -253,6 +253,7 @@
         text-align: center;
         &:hover {
             background-color: inherit;
+            border-radius: 35px;
             transition-duration: 1s;
         }
     }

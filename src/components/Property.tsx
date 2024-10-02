@@ -37,7 +37,7 @@ const DescBox: React.FC<DescBoxProps> = ({ text, icon }) => {
 };
 
 export const PropertyCard = ({ house, cssStateHover }: { house: Property, cssStateHover: boolean }) => {
-    console.log("🚀 ~ PropertyCard ~ house:", house)
+    // console.log("🚀 ~ PropertyCard ~ house:", house)
     const coverPhoto = house ? house.cover_url[0] : '/images/placeholder.jpg';
     
     const area = house.charRef.metrosCuadradros ? house.charRef.metrosCuadradros : 'N/A';

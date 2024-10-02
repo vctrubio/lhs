@@ -23,6 +23,7 @@ import "@/css/airbnb.css";
 
 import '@fortawesome/fontawesome-svg-core/styles.css'; // Import the CSS
 import { config } from '@fortawesome/fontawesome-svg-core';
+import { PropertyProvider } from "@/lib/context";
 config.autoAddCss = false; // Tell Font Awesome to skip adding the CSS automatically
 
 
@@ -40,7 +41,7 @@ export const metadata: Metadata = {
     images: [
       {
         url: "https://yourwebsite.com/og-image.jpg", // Image URL for WhatsApp, Facebook, Pinterest
-        width: 1200, 
+        width: 1200,
         height: 630,
         type: "image/jpeg",
         alt: "Luxury homes in Madrid",
@@ -69,12 +70,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
-      <body
-      // className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {/* <ColorPalette/> */}
-        {/* <NavBar /> */}
-        {children}
+      <body>
+        <PropertyProvider>
+          {children}
+        </PropertyProvider>
       </body>
     </html>
   );
@@ -84,7 +83,5 @@ export default function RootLayout({
 
 
 /*
-Twitter carad vifeo embedment for EVENT page
-
-
+Twitter carad video embedment for EVENT page
 */

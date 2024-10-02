@@ -22,6 +22,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/(navbar)/layout.jsx", "src/lib/bridges.ts", "src/app/dev/page.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/(navbar)/layout.jsx", "src/lib/bridges.ts", "src/app/dev/page.jsx", "src/lib/context.js"],
   "exclude": ["node_modules"]
 }

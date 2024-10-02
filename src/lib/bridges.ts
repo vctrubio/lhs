@@ -1,6 +1,8 @@
 import { createClient, Entry } from 'contentful';
-import { Property, Barrio } from '@/types/property';
+import { Property, Barrio, BannerListings } from '@/types/property';
 import { ImageToUrl, extractImageUrls } from './utils';
+import { List } from 'postcss/lib/list';
+import { title } from 'process';
 
 const client = createClient({
     space: process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID as string,
@@ -87,11 +89,20 @@ function parseBarrioFromContentful({ entry }): Barrio {
     } as Barrio;
 }
 
-export async function fetchEntriesContentful(): Promise<{ properties: Property[], barrios: Barrio[] }> {
+function parseBannerListingsFromContentful({ entry }): BannerListings {
+    return entry.fields.listings.map(listing => ({
+        title: entry.fields.title,
+        photo: `https:${listing.fields.photos[0].fields.file.url}`,
+        url: listing.fields.url
+    })) as BannerListings;
+}
+
+export async function fetchEntriesContentful(): Promise<{ properties: Property[], barrios: Barrio[], listings: BannerListings[] }> {
     const entries = await client.getEntries();
 
     const barrios: Barrio[] = [];
     const properties: Property[] = [];
+    const listings: BannerListings[] = [];
 
     entries.items.map((entry: Entry<any>) => {
         if (entry.sys.contentType.sys.id === 'barrio') {
@@ -100,8 +111,12 @@ export async function fetchEntriesContentful(): Promise<{ properties: Property[]
         if (entry.sys.contentType.sys.id === 'propiedad') {
             properties.push(parsePropertyFromContentful({ entry }))
         }
+        if (entry.sys.contentType.sys.id === 'homePageBanner') {
+            listings.push(parseBannerListingsFromContentful({ entry }))
+        }
+
     });
 
-    return { properties, barrios }
+    return { properties, barrios, listings }
 
 }
